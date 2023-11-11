@@ -9,5 +9,6 @@
     <string name="boards_header">Boards</string>
     <string name="logOut_text">Log Out</string>
 
-    <string name="loggedInAccount_username_key">loggedInAccount_username_key</string>
+    <string name="LoggedInUser_prefs">loggedInUser_prefs</string>
+    <string name="userGreeting">"Hello, "</string>
 </resources>

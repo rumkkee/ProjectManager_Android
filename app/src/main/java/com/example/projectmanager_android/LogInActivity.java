@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.projectmanager_android.DB.AppDataBase;
 import com.example.projectmanager_android.DB.Users;
@@ -49,6 +50,8 @@ public class LogInActivity extends AppCompatActivity {
 
         mBackButton = mLogInBinding.logInActivityBackButton;
         mLogInButton = mLogInBinding.logInButton;
+
+        mSharedPreferences = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
 
         mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
                 .allowMainThreadQueries()
@@ -113,11 +116,12 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void addUserToSharedPreferences(Users user){
-        mSharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        //mSharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt("currentUser_id", user.getUserId());
-        editor.putString("currentUser_name", user.getUsername());
+        editor.putString("currentUser_username", user.getUsername());
         editor.apply();
+        Toast.makeText(LogInActivity.this, "Log In ID saved. ", Toast.LENGTH_LONG).show();
     }
 
 

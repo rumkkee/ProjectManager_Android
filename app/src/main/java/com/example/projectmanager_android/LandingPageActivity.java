@@ -21,6 +21,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
     Button mLogOutButton;
 
+    SharedPreferences mSharedPreferences;
 
 
     @Override
@@ -34,11 +35,8 @@ public class LandingPageActivity extends AppCompatActivity {
         mUserGreeting = mLandingPageBinding.userGreeting;
 
 
-        SharedPreferences sharedPref = getSharedPreferences(
-                getString(R.string.loggedInAccount_username_key), Context.MODE_PRIVATE);
-
-        System.out.println("Username stored in shared prefs: " + sharedPref);
-        mUserGreeting.setText("Hello, " + sharedPref);
+        mSharedPreferences = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
+        setUserGreeting();
 
         setContentView(mLandingPageBinding.getRoot());
         mLogOutButton.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +46,11 @@ public class LandingPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void setUserGreeting(){
+        String currentUsername = mSharedPreferences.getString("currentUser_username", "");
+        mUserGreeting.setText(getString(R.string.userGreeting) + currentUsername);
     }
 
     public static Intent getIntent(Context context){
