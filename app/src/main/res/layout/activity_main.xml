@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/mainActivity_mainActivity_loginButton"
+        android:id="@+id/mainActivity_loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#DAECDB"
@@ -34,14 +34,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/mainActivity_mainActivity_signUp_Button"
+        android:id="@+id/mainActivity_signUp_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#5DC14B"
         android:text="@string/signUp_Text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainActivity_mainActivity_loginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/mainActivity_loginButton" />
 
 
 

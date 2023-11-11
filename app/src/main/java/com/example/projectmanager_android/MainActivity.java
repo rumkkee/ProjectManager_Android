@@ -23,13 +23,13 @@ public class MainActivity extends AppCompatActivity {
         mActivityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mActivityMainBinding.getRoot());
 
-        mLogInButton = mActivityMainBinding.mainActivityMainActivityLoginButton;
+        mLogInButton = mActivityMainBinding.mainActivityLoginButton;
 
         mLogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Create the login activity,
-                //  then start its activity with an intent.
+                Intent intent = LogInActivity.getIntent(getApplicationContext());
+                startActivity(intent);
             }
         });
 
