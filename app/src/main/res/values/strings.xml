@@ -3,4 +3,7 @@
     <string name="AppName">Trello</string>
     <string name="logIn_Text">Log In</string>
     <string name="signUp_Text">Sign Up</string>
+    <string name="backButton_text">X</string>
+    <string name="hint_enterYourUsername">enter your username</string>
+    <string name="hint_enterYourPassword">enter your password</string>
 </resources>
