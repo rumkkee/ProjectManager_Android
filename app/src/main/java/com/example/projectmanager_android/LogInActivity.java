@@ -5,6 +5,8 @@ import androidx.room.Room;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.credentials.Credential;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,8 @@ public class LogInActivity extends AppCompatActivity {
     UsersDAO mUserDAO;
 
     List<Users> mUserCredentialsList;
+
+    SharedPreferences mSharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +92,8 @@ public class LogInActivity extends AppCompatActivity {
                 if(inputtedCredentials.getPassword().equals(credentials.getPassword())){
                     // Credentials exist; Starts the landing activity for the user that has logged in
                     System.out.println("Log in credentials match!");
-                    Intent intent = LandingPageActivity.getIntent(getApplicationContext());
-                    startActivity(intent);
+                    addUserToSharedPreferences(credentials);
+                    startLandingPageActivity();
                 }else{
                     // Case where the user exists, but password is incorrect
                     System.out.println("Password is incorrect!");
@@ -100,6 +104,20 @@ public class LogInActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    private void startLandingPageActivity(){
+        Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+        startActivity(intent);
+
+    }
+
+    private void addUserToSharedPreferences(Users user){
+        mSharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt("currentUser_id", user.getUserId());
+        editor.putString("currentUser_name", user.getUsername());
+        editor.apply();
     }
 
 

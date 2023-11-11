@@ -22,6 +22,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/userGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:text="Hello, _username_"
+        android:textSize="20sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/landingActivity_title"
+        android:paddingBottom="20dp"
+        />
+
+    <TextView
         android:id="@+id/boards_header"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -31,7 +46,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/landingActivity_title"
+        app:layout_constraintTop_toBottomOf="@+id/userGreeting"
         />
 
     <LinearLayout

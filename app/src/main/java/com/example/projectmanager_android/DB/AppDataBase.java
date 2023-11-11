@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 @Database(entities = {Users.class}, version = 1)
 public abstract class AppDataBase extends RoomDatabase {
-    public static final String DATABASE_NAME = "ProjectManager.db";
+    public static final String DATABASE_NAME = "ProjectManager_android.db";
     public static final String USERS_TABLE = "users_table";
 
     private static volatile AppDataBase instance;
@@ -23,9 +23,9 @@ public abstract class AppDataBase extends RoomDatabase {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
                             AppDataBase.class,
                             DATABASE_NAME).build();
-                    Users testUser1 = createUser("testuser1", "testuser1", false);
-                    Users testAdmin2 = createUser("admin2", "admin2", true);
-                    instance.UserDAO().insert(testUser1, testAdmin2);
+//                    Users testUser1 = createUser("testuser1", "testuser1", false);
+//                    Users testAdmin2 = createUser("admin2", "admin2", true);
+//                    instance.UserDAO().insert(testUser1, testAdmin2);
                 }
             }
         }

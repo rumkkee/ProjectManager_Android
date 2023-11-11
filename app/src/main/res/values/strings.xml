@@ -8,4 +8,6 @@
     <string name="hint_enterYourPassword">enter your password</string>
     <string name="boards_header">Boards</string>
     <string name="logOut_text">Log Out</string>
+
+    <string name="loggedInAccount_username_key">loggedInAccount_username_key</string>
 </resources>
