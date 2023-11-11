@@ -6,4 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".LandingPageActivity">
 
+    <TextView
+        android:id="@+id/landingActivity_title"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+
+
+        android:text="@string/AppName"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/boards_header"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:text="@string/boards_header"
+        android:textSize="20sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/landingActivity_title"
+        />
+
+    <LinearLayout
+        android:id="@+id/boards_layout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#3E000000"
+
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boards_header" />
+
+    <Button
+        android:id="@+id/LogOut_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:text="@string/logOut_text"
+        android:backgroundTint="#9349DC"
+        app:layout_constraintTop_toBottomOf="@id/boards_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,4 +6,6 @@
     <string name="backButton_text">X</string>
     <string name="hint_enterYourUsername">enter your username</string>
     <string name="hint_enterYourPassword">enter your password</string>
+    <string name="boards_header">Boards</string>
+    <string name="logOut_text">Log Out</string>
 </resources>
