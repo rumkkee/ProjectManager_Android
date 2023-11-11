@@ -27,14 +27,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
 
+        android:paddingBottom="20dp"
         android:text="Hello, _username_"
-        android:textSize="20sp"
 
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/landingActivity_title"
-        android:paddingBottom="20dp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/landingActivity_title" />
 
     <TextView
         android:id="@+id/boards_header"
@@ -46,8 +45,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userGreeting"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/userGreeting" />
 
     <LinearLayout
         android:id="@+id/boards_layout"
@@ -65,12 +63,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-
-        android:text="@string/logOut_text"
         android:backgroundTint="#9349DC"
-        app:layout_constraintTop_toBottomOf="@id/boards_layout"
+        android:text="@string/logOut_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/boards_layout" />
+
+    <Button
+        android:id="@+id/admin_Button"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/adminButton_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

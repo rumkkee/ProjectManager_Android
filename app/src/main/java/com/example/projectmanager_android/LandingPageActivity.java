@@ -23,6 +23,8 @@ public class LandingPageActivity extends AppCompatActivity {
 
     SharedPreferences mSharedPreferences;
 
+    Button mAdminButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,9 @@ public class LandingPageActivity extends AppCompatActivity {
         mLogOutButton = mLandingPageBinding.LogOutButton;
         mUserGreeting = mLandingPageBinding.userGreeting;
 
-
         mSharedPreferences = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
         setUserGreeting();
+        adminCheck();
 
         setContentView(mLandingPageBinding.getRoot());
         mLogOutButton.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +48,14 @@ public class LandingPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void adminCheck() {
+        boolean isAdmin = mSharedPreferences.getBoolean("currentUser_isAdmin", false);
+        if(isAdmin){
+            mAdminButton = mLandingPageBinding.adminButton;
+            mAdminButton.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setUserGreeting(){
