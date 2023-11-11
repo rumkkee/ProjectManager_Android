@@ -3,7 +3,7 @@ package com.example.projectmanager_android.DB;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = AppDataBase.USER_CREDENTIALS_TABLE)
+@Entity(tableName = AppDataBase.USERS_TABLE)
 public class Users {
     @PrimaryKey(autoGenerate = true)
     private int mUserId;

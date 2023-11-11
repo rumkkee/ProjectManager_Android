@@ -1,0 +1,22 @@
+package com.example.projectmanager_android.DB;
+
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
+
+import java.util.List;
+
+public interface UsersDAO {
+    @Insert
+    void insert(Users... users);
+
+    @Update
+    void update(Users... users);
+
+    @Delete
+    void delete(Users... users);
+
+    @Query("SELECT * FROM " + AppDataBase.USERS_TABLE)
+    List<Users> getUsers();
+}
