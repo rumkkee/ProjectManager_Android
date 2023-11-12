@@ -19,6 +19,11 @@ public interface BoardDAO {
     @Delete
     void delete(Board... boards);
 
-    @Query("SELECT * FROM " + AppDataBase.BOARDS_TABLE)
-    List<Board> getBoards();
+    @Query("SELECT * FROM " + AppDataBase.BOARDS_TABLE +
+            " WHERE mWorkspaceId == :workspaceId")
+    List<Board> getBoardsByWorkspace(int workspaceId);
+
+    @Query("SELECT * FROM " + AppDataBase.BOARDS_TABLE +
+            " WHERE mUserId == :userId")
+    List<Board> getBoardsByUser(int userId);
 }
