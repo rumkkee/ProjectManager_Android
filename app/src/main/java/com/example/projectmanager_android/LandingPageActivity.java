@@ -16,6 +16,8 @@ public class LandingPageActivity extends AppCompatActivity {
 
     ActivityLandingPageBinding mLandingPageBinding;
 
+    Button mAddBoardButton;
+
     TextView mUserGreeting;
 
     Button mLogOutButton;
@@ -31,7 +33,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
         mLandingPageBinding = ActivityLandingPageBinding.inflate(getLayoutInflater());
 
-
+        mAddBoardButton = mLandingPageBinding.addBoardButton;
         mLogOutButton = mLandingPageBinding.LogOutButton;
         mUserGreeting = mLandingPageBinding.userGreeting;
 
@@ -40,6 +42,14 @@ public class LandingPageActivity extends AppCompatActivity {
         adminCheck();
 
         setContentView(mLandingPageBinding.getRoot());
+
+        mAddBoardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         mLogOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

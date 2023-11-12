@@ -14,4 +14,6 @@
     <string name="adminButton_text">Admin</string>
     <string name="addBoard_symbol">+</string>
     <string name="userGreeting_placeholder">Hello, _username_</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
