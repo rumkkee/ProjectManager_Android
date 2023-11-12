@@ -10,6 +10,9 @@ import androidx.room.RoomDatabase;
 public abstract class AppDataBase extends RoomDatabase {
     public static final String DATABASE_NAME = "ProjectManager_android.db";
     public static final String USERS_TABLE = "users_table";
+    public static final String BOARDS_TABLE = "boards_table";
+    public static final String LISTS_TABLE = "lists_table";
+    public static final String CARDS_TABLE = "cards_table";
 
     private static volatile AppDataBase instance;
     private static final Object LOCK = new Object();
