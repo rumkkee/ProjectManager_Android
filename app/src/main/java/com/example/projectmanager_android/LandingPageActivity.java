@@ -46,7 +46,7 @@ public class LandingPageActivity extends AppCompatActivity {
         mAddBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showBoardSetupFragment();
             }
         });
 
@@ -57,6 +57,15 @@ public class LandingPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void showBoardSetupFragment(){
+        BoardSetupFragment boardSetupFragment = new BoardSetupFragment();
+
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, boardSetupFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     private void adminCheck() {
