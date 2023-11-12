@@ -16,7 +16,6 @@ public class LandingPageActivity extends AppCompatActivity {
 
     ActivityLandingPageBinding mLandingPageBinding;
 
-
     TextView mUserGreeting;
 
     Button mLogOutButton;

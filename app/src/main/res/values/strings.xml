@@ -12,4 +12,6 @@
     <string name="LoggedInUser_prefs">loggedInUser_prefs</string>
     <string name="userGreeting">"Hello, "</string>
     <string name="adminButton_text">Admin</string>
+    <string name="addBoard_symbol">+</string>
+    <string name="userGreeting_placeholder">Hello, _username_</string>
 </resources>

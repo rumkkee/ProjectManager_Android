@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/landingActivity_title"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
         android:gravity="center"
 
 
@@ -21,6 +21,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/addBoard_button"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+
+        android:text="@string/addBoard_symbol"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/landingActivity_title"
+        app:layout_constraintTop_toTopOf="@+id/landingActivity_title"
+        app:layout_constraintBottom_toBottomOf="@+id/landingActivity_title"
+
+        />
+
     <TextView
         android:id="@+id/userGreeting"
         android:layout_width="wrap_content"
@@ -28,7 +42,7 @@
         android:gravity="center"
 
         android:paddingBottom="20dp"
-        android:text="Hello, _username_"
+        android:text="@string/userGreeting_placeholder"
 
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
