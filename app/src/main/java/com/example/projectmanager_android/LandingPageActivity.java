@@ -11,12 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.projectmanager_android.databinding.ActivityLandingPageBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class LandingPageActivity extends AppCompatActivity {
 
     ActivityLandingPageBinding mLandingPageBinding;
 
-    Button mAddBoardButton;
+    FloatingActionButton mAddBoardButton;
 
     TextView mUserGreeting;
 
@@ -33,7 +34,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
         mLandingPageBinding = ActivityLandingPageBinding.inflate(getLayoutInflater());
 
-        mAddBoardButton = mLandingPageBinding.addBoardButton;
+        mAddBoardButton = mLandingPageBinding.addBoardFab;
         mLogOutButton = mLandingPageBinding.LogOutButton;
         mUserGreeting = mLandingPageBinding.userGreeting;
 
