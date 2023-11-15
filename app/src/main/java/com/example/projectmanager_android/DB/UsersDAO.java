@@ -1,5 +1,6 @@
 package com.example.projectmanager_android.DB;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -20,5 +21,5 @@ public interface UsersDAO {
     void delete(Users... users);
 
     @Query("SELECT * FROM " + AppDataBase.USERS_TABLE)
-    List<Users> getUsers();
+    LiveData<List<Users>> getUsers();
 }

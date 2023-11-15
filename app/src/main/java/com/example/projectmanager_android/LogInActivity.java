@@ -1,6 +1,7 @@
 package com.example.projectmanager_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 
 import android.content.Context;
@@ -33,7 +34,7 @@ public class LogInActivity extends AppCompatActivity {
 
     UsersDAO mUserDAO;
 
-    List<Users> mUserCredentialsList;
+    LiveData<List<Users>> mUserCredentialsList;
 
     SharedPreferences mSharedPreferences;
 
