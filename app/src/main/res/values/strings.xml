@@ -20,4 +20,5 @@
     <string name="boardSetup_nameInput_hint">enter board name</string>
     <string name="boardSetupButton_text">Create Board</string>
     <string name="BoardSetup_Cancel_text">Cancel</string>
+    <string name="button_save">Save</string>
 </resources>
