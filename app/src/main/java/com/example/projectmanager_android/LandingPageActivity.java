@@ -1,6 +1,8 @@
 package com.example.projectmanager_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.projectmanager_android.DB.UserListAdapter;
 import com.example.projectmanager_android.databinding.ActivityLandingPageBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,12 +30,24 @@ public class LandingPageActivity extends AppCompatActivity {
 
     Button mAdminButton;
 
+    // BoardViewModel mBoardViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mLandingPageBinding = ActivityLandingPageBinding.inflate(getLayoutInflater());
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        UserListAdapter adapter = new UserListAdapter(new UserListAdapter.UserDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // TODO: Convert the UserViewModel to a BoardViewModel
+        //  Then, uncomment this section
+//        mBoardViewModel.getAllUsers().observe(this, users -> {
+//            adapter.submitList(users);
+//        });
 
         mAddBoardButton = mLandingPageBinding.addBoardFab;
         mLogOutButton = mLandingPageBinding.LogOutButton;

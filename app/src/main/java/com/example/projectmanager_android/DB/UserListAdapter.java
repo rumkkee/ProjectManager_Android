@@ -24,7 +24,7 @@ public class UserListAdapter extends ListAdapter<Users, UserViewHolder> {
         holder.bind(current.getUsername());
     }
 
-    static class UserDiff extends DiffUtil.ItemCallback<Users>{
+    public static class UserDiff extends DiffUtil.ItemCallback<Users>{
 
         @Override
         public boolean areItemsTheSame(@NonNull Users oldItem, @NonNull Users newItem) {

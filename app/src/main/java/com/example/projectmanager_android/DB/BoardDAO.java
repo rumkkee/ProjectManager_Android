@@ -1,5 +1,6 @@
 package com.example.projectmanager_android.DB;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -19,11 +20,16 @@ public interface BoardDAO {
     @Delete
     void delete(Board... boards);
 
+
+
     @Query("SELECT * FROM " + AppDataBase.BOARDS_TABLE +
             " WHERE mWorkspaceId == :workspaceId")
-    List<Board> getBoardsByWorkspace(int workspaceId);
+    LiveData<List<Board>> getBoardsByWorkspace(int workspaceId);
 
     @Query("SELECT * FROM " + AppDataBase.BOARDS_TABLE +
             " WHERE mUserId == :userId")
-    List<Board> getBoardsByUser(int userId);
+    LiveData<List<Board>> getBoardsByUser(int userId);
+
+    @Query("SELECT * FROM " + AppDataBase.BOARDS_TABLE)
+    List<List<Board>> getAllBoards();
 }

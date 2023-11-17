@@ -34,7 +34,7 @@ public class LogInActivity extends AppCompatActivity {
 
     UsersDAO mUserDAO;
 
-    LiveData<List<Users>> mUserCredentialsList;
+    List<Users> mUserCredentialsList;
 
     SharedPreferences mSharedPreferences;
 
@@ -42,6 +42,8 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+
+
 
         mLogInBinding = ActivityLogInBinding.inflate(getLayoutInflater());
         setContentView(mLogInBinding.getRoot());
@@ -60,14 +62,14 @@ public class LogInActivity extends AppCompatActivity {
                 .UserDAO();
 
         mUserCredentialsList = mUserDAO.getUsers();
-        if(mUserCredentialsList.isEmpty()){
-            Users testUser1 = AppDataBase.createUser("testUser1", "testUser1", false);
-            Users admin2 = AppDataBase.createUser("admin2", "admin2", true);
-            mUserDAO.insert(testUser1, admin2);
-
-            mUserCredentialsList = mUserDAO.getUsers();
-            System.out.println("Inserted predefined Users!");
-        }
+//        if(mUserCredentialsList.isEmpty()){
+//            Users testUser1 = AppDataBase.createUser("testUser1", "testUser1", false);
+//            Users admin2 = AppDataBase.createUser("admin2", "admin2", true);
+//            mUserDAO.insert(testUser1, admin2);
+//
+//            mUserCredentialsList = mUserDAO.getUsers();
+//            System.out.println("Inserted predefined Users!");
+//        }
 
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override

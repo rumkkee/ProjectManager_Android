@@ -13,7 +13,7 @@ public class UserRepository {
     UserRepository(Application application){
         AppDataBase db = AppDataBase.getInstance(application);
         mUsersDAO = db.UserDAO();
-        mAllUsers = mUsersDAO.getUsers();
+        //mAllUsers = mUsersDAO.getUsers();
     }
 
     public LiveData<List<Users>> getAllUsers(){
