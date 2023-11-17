@@ -21,9 +21,9 @@ public class BoardViewHolder extends RecyclerView.ViewHolder {
         boardItemView.setText(text);
     }
 
-    public static UserViewHolder create(ViewGroup parent){
+    public static BoardViewHolder create(ViewGroup parent){
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_item, parent, false);
-        return new UserViewHolder(view);
+        return new BoardViewHolder(view);
     }
 }
