@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Users.class}, version = 1)
+@Database(entities = {Users.class, Board.class} , version = 1)
 public abstract class AppDataBase extends RoomDatabase {
     public static final String DATABASE_NAME = "ProjectManager_android.db";
     public static final String USERS_TABLE = "users_table";
@@ -52,6 +52,7 @@ public abstract class AppDataBase extends RoomDatabase {
             super.onCreate(db);
             databaseWriteExecutor.execute(() -> {
 
+                System.out.println("Executing database Callback \n\n");
                 // Populating DB with users
                 UsersDAO usersDAO = instance.UserDAO();
 

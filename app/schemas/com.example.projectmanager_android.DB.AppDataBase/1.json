@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8bdd41ea83675347ca5cdf41d03c7627",
+    "identityHash": "719dfb5b2bea086580c4b1739ff485e3",
     "entities": [
       {
         "tableName": "users_table",
@@ -41,12 +41,56 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "boards_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mBoardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mWorkspaceId` INTEGER NOT NULL, `mUserId` INTEGER NOT NULL, `mTitle` TEXT, `isStarred` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mBoardId",
+            "columnName": "mBoardId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mWorkspaceId",
+            "columnName": "mWorkspaceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTitle",
+            "columnName": "mTitle",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isStarred",
+            "columnName": "isStarred",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mBoardId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8bdd41ea83675347ca5cdf41d03c7627')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '719dfb5b2bea086580c4b1739ff485e3')"
     ]
   }
 }
