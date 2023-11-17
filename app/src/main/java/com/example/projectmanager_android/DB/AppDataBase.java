@@ -36,7 +36,10 @@ public abstract class AppDataBase extends RoomDatabase {
                 if(instance == null){
                     instance = Room.databaseBuilder(context.getApplicationContext(),
                             AppDataBase.class,
-                            DATABASE_NAME).addCallback(sRoomDatabaseCallback).build();
+                            DATABASE_NAME)
+                            .allowMainThreadQueries()
+                            .addCallback(sRoomDatabaseCallback)
+                            .build();
 //                    Users testUser1 = createUser("testuser1", "testuser1", false);
 //                    Users testAdmin2 = createUser("admin2", "admin2", true);
 //                    instance.UserDAO().insert(testUser1, testAdmin2);
@@ -46,7 +49,7 @@ public abstract class AppDataBase extends RoomDatabase {
         return instance;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback(){
+    public static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback(){
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);

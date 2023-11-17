@@ -1,6 +1,7 @@
 package com.example.projectmanager_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,7 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.projectmanager_android.DB.UserListAdapter;
+import com.example.projectmanager_android.DB.BoardListAdapter;
+import com.example.projectmanager_android.DB.BoardViewModel;
 import com.example.projectmanager_android.databinding.ActivityLandingPageBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -30,24 +32,23 @@ public class LandingPageActivity extends AppCompatActivity {
 
     Button mAdminButton;
 
-    // BoardViewModel mBoardViewModel;
+    BoardViewModel mBoardViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mLandingPageBinding = ActivityLandingPageBinding.inflate(getLayoutInflater());
+        setContentView(mLandingPageBinding.getRoot());
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        UserListAdapter adapter = new UserListAdapter(new UserListAdapter.UserDiff());
+        BoardListAdapter adapter = new BoardListAdapter(new BoardListAdapter.BoardDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // TODO: Convert the UserViewModel to a BoardViewModel
-        //  Then, uncomment this section
-//        mBoardViewModel.getAllUsers().observe(this, users -> {
-//            adapter.submitList(users);
-//        });
+        mBoardViewModel = new ViewModelProvider(this).get(BoardViewModel.class);
+        mBoardViewModel.getAllBoards().observe(this, boards -> {
+            adapter.submitList(boards);
+        });
 
         mAddBoardButton = mLandingPageBinding.addBoardFab;
         mLogOutButton = mLandingPageBinding.LogOutButton;
@@ -56,8 +57,6 @@ public class LandingPageActivity extends AppCompatActivity {
         mSharedPreferences = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
         setUserGreeting();
         adminCheck();
-
-        setContentView(mLandingPageBinding.getRoot());
 
         mAddBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override

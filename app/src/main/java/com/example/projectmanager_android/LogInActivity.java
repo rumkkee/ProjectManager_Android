@@ -56,20 +56,9 @@ public class LogInActivity extends AppCompatActivity {
 
         mSharedPreferences = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
 
-        mUserDAO = Room.databaseBuilder(this, AppDataBase.class, AppDataBase.DATABASE_NAME)
-                .allowMainThreadQueries()
-                .build()
-                .UserDAO();
+        mUserDAO = AppDataBase.getInstance(this).UserDAO();
 
         mUserCredentialsList = mUserDAO.getUsers();
-//        if(mUserCredentialsList.isEmpty()){
-//            Users testUser1 = AppDataBase.createUser("testUser1", "testUser1", false);
-//            Users admin2 = AppDataBase.createUser("admin2", "admin2", true);
-//            mUserDAO.insert(testUser1, admin2);
-//
-//            mUserCredentialsList = mUserDAO.getUsers();
-//            System.out.println("Inserted predefined Users!");
-//        }
 
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
