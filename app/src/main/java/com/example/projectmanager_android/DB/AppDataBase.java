@@ -51,11 +51,20 @@ public abstract class AppDataBase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
             databaseWriteExecutor.execute(() -> {
+
+                // Populating DB with users
                 UsersDAO usersDAO = instance.UserDAO();
 
                 Users testUser1 = createUser("testUser1", "testUser1", false);
                 Users admin2 = createUser("admin2", "admin2", true);
                 usersDAO.insert(testUser1, admin2);
+
+                // Populating DB's admin2 with boards
+                BoardDAO boardDAO = instance.BoardDAO();
+                Board board1 = createBoard("Pandora Logs", admin2.getUserId());
+                Board board2 = createBoard("Anomalocaris Tributes", admin2.getUserId());
+                Board board3 = createBoard("Watership Downloads", admin2.getUserId());
+                boardDAO.insert(board1, board2, board3);
             });
         }
     };
@@ -64,5 +73,11 @@ public abstract class AppDataBase extends RoomDatabase {
         Users userCredentials = new Users(name, password);
         userCredentials.setIsAdmin(isAdmin);
         return userCredentials;
+    }
+
+    public static Board createBoard(String title, int userID){
+        Board board = new Board(title);
+        board.setUserId(userID);
+        return board;
     }
 }
