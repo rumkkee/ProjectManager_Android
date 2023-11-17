@@ -24,6 +24,7 @@ public abstract class AppDataBase extends RoomDatabase {
     private static final Object LOCK = new Object();
 
     public abstract UsersDAO UserDAO();
+    public abstract BoardDAO BoardDAO();
     
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =

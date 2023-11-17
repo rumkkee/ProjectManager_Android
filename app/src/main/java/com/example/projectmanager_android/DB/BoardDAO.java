@@ -20,8 +20,6 @@ public interface BoardDAO {
     @Delete
     void delete(Board... boards);
 
-
-
     @Query("SELECT * FROM " + AppDataBase.BOARDS_TABLE +
             " WHERE mWorkspaceId == :workspaceId")
     LiveData<List<Board>> getBoardsByWorkspace(int workspaceId);
@@ -31,5 +29,5 @@ public interface BoardDAO {
     LiveData<List<Board>> getBoardsByUser(int userId);
 
     @Query("SELECT * FROM " + AppDataBase.BOARDS_TABLE)
-    List<List<Board>> getAllBoards();
+    LiveData<List<Board>> getAllBoards();
 }
