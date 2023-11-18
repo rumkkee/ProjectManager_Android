@@ -96,7 +96,7 @@ public class LandingPageActivity extends AppCompatActivity {
     }
 
     private int getCurrentUserId(){
-        int currentUserId = mSharedPreferences.getInt("currentUser_id", 0);
+        int currentUserId = mSharedPreferences.getInt("currentUser_id", -1);
         System.out.println("Current user id: " + currentUserId);
         return currentUserId;
     }

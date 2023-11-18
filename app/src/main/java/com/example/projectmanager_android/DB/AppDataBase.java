@@ -65,18 +65,14 @@ public abstract class AppDataBase extends RoomDatabase {
 
                 // Populating DB's admin2 with boards
                 BoardDAO boardDAO = instance.BoardDAO();
-                Board board1 = createBoard("Pandora Logs", admin2.getUserId());
-                Board board2 = createBoard("Anomalocaris Tributes", admin2.getUserId());
-                Board board3 = createBoard("Watership Downloads", admin2.getUserId());
+                Board board1 = createBoard("Pandora Logs", userDAO.getUserByUsername("admin2").get(0).getUserId());
+                Board board2 = createBoard("Anomalocaris Tributes", userDAO.getUserByUsername("admin2").get(0).getUserId());
+                Board board3 = createBoard("Watership Downloads", userDAO.getUserByUsername("admin2").get(0).getUserId());
                 boardDAO.insert(board1, board2, board3);
 
-                System.out.println("id of testUser1 (Should be 1): " + testUser1.getUserId());
-                System.out.println(testUser1);
-                System.out.println("id of admin2 (Should be 2): " + admin2.getUserId());
+                System.out.println("Should print testUser1 info: \n" + userDAO.getUserByID(1));
+                System.out.println("Should print admin2 info: \n" + userDAO.getUserByID(2));
                 System.out.println(admin2);
-                System.out.println(board1);
-                System.out.println(board2);
-                System.out.println(board3);
             });
         }
     };

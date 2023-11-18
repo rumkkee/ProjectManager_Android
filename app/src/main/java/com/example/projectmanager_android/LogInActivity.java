@@ -110,6 +110,7 @@ public class LogInActivity extends AppCompatActivity {
         editor.putInt("currentUser_id", user.getUserId());
         editor.putString("currentUser_username", user.getUsername());
         editor.putBoolean("currentUser_isAdmin", user.getIsAdmin());
+        System.out.println("Stored user info in SharedPreferences: \n" + user );
         editor.apply();
         Toast.makeText(LogInActivity.this, "Log In ID saved. ", Toast.LENGTH_LONG).show();
     }
