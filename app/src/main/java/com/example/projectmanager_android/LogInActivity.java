@@ -55,7 +55,7 @@ public class LogInActivity extends AppCompatActivity {
 
         mUserDAO = AppDataBase.getInstance(this).UserDAO();
 
-        mUserCredentialsList = mUserDAO.getUsers();
+        mUserCredentialsList = mUserDAO.getAllUsers();
 
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override

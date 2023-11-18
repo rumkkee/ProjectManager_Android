@@ -7,7 +7,11 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
-
+/**
+ * @author Arturo Cesareo-Zacarias
+ * @since 11/17/2023
+ * The start of the UserDAO interface
+ */
 @Dao
 public interface UserDAO {
     @Insert
@@ -20,7 +24,15 @@ public interface UserDAO {
     void delete(User... users);
 
     @Query("SELECT * FROM " + AppDataBase.USERS_TABLE)
-    List<User> getUsers();
+    List<User> getAllUsers();
+
+    @Query("SELECT * FROM " + AppDataBase.USERS_TABLE +
+            " WHERE mUserId == :userId")
+    List<User> getUserByID(int userId);
+
+    @Query("SELECT * FROM " + AppDataBase.USERS_TABLE +
+            " WHERE mUsername == :username")
+    List<User> getUserByUsername(String username);
 
 
 }

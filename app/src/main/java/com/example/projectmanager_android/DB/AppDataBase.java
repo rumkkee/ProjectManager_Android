@@ -69,6 +69,14 @@ public abstract class AppDataBase extends RoomDatabase {
                 Board board2 = createBoard("Anomalocaris Tributes", admin2.getUserId());
                 Board board3 = createBoard("Watership Downloads", admin2.getUserId());
                 boardDAO.insert(board1, board2, board3);
+
+                System.out.println("id of testUser1 (Should be 1): " + testUser1.getUserId());
+                System.out.println(testUser1);
+                System.out.println("id of admin2 (Should be 2): " + admin2.getUserId());
+                System.out.println(admin2);
+                System.out.println(board1);
+                System.out.println(board2);
+                System.out.println(board3);
             });
         }
     };

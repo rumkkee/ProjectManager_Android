@@ -21,6 +21,7 @@ public class BoardViewModel extends AndroidViewModel {
     public LiveData<List<Board>> getAllBoards(){
         return mAllBoards;
     }
+    public LiveData<List<Board>> getBoardsByUserId(int userId){return mRepository.getBoardsByUserId(userId);}
     public void insert(Board board){
         mRepository.insert(board);
     }

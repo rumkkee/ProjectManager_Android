@@ -3,6 +3,11 @@ package com.example.projectmanager_android.DB;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * @author Arturo Cesareo-Zacarias
+ * @since 11/17/2023
+ * The start of the User class
+ */
 @Entity(tableName = AppDataBase.USERS_TABLE)
 public class User {
     @PrimaryKey(autoGenerate = true)

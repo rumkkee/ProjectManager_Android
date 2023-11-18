@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 public class Board {
     @PrimaryKey(autoGenerate = true)
     private int mBoardId;
+
     private int mWorkspaceId;
     private int mUserId;
     private String mTitle;

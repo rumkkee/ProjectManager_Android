@@ -20,6 +20,8 @@ public class BoardRepository {
         return mAllBoards;
     }
 
+    public LiveData<List<Board>> getBoardsByUserId(int userId){return mBoardDAO.getBoardsByUserId(userId);}
+
     void insert(Board board){
         AppDataBase.databaseWriteExecutor.execute(() -> {
             mBoardDAO.insert(board);
