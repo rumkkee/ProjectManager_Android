@@ -7,22 +7,22 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class UserRepository {
-    private UsersDAO mUsersDAO;
-    private LiveData<List<Users>> mAllUsers;
+    private UserDAO mUserDAO;
+    private LiveData<List<User>> mAllUsers;
 
     UserRepository(Application application){
         AppDataBase db = AppDataBase.getInstance(application);
-        mUsersDAO = db.UserDAO();
-        //mAllUsers = mUsersDAO.getUsers();
+        mUserDAO = db.UserDAO();
+        //mAllUsers = mUserDAO.getUsers();
     }
 
-    public LiveData<List<Users>> getAllUsers(){
+    public LiveData<List<User>> getAllUsers(){
         return mAllUsers;
     }
 
-    void insert(Users user){
+    void insert(User user){
         AppDataBase.databaseWriteExecutor.execute(() -> {
-            mUsersDAO.insert(user);
+            mUserDAO.insert(user);
         });
     }
 }

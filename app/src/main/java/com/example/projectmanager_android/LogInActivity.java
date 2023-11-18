@@ -1,13 +1,10 @@
 package com.example.projectmanager_android;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.room.Room;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.credentials.Credential;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.projectmanager_android.DB.AppDataBase;
-import com.example.projectmanager_android.DB.Users;
-import com.example.projectmanager_android.DB.UsersDAO;
+import com.example.projectmanager_android.DB.User;
+import com.example.projectmanager_android.DB.UserDAO;
 import com.example.projectmanager_android.databinding.ActivityLogInBinding;
 
 import java.util.List;
@@ -32,9 +29,9 @@ public class LogInActivity extends AppCompatActivity {
 
     Button mLogInButton;
 
-    UsersDAO mUserDAO;
+    UserDAO mUserDAO;
 
-    List<Users> mUserCredentialsList;
+    List<User> mUserCredentialsList;
 
     SharedPreferences mSharedPreferences;
 
@@ -80,9 +77,9 @@ public class LogInActivity extends AppCompatActivity {
         String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();
 
-        Users inputtedCredentials = new Users(username, password);
+        User inputtedCredentials = new User(username, password);
 
-        for (Users credentials: mUserCredentialsList) {
+        for (User credentials: mUserCredentialsList) {
             if(inputtedCredentials.getUsername().equals(credentials.getUsername())){
                 if(inputtedCredentials.getPassword().equals(credentials.getPassword())){
                     // Credentials exist; Starts the landing activity for the user that has logged in
@@ -107,7 +104,7 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 
-    private void addUserToSharedPreferences(Users user){
+    private void addUserToSharedPreferences(User user){
         //mSharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt("currentUser_id", user.getUserId());

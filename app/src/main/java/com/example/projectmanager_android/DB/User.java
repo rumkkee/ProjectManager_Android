@@ -4,14 +4,14 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = AppDataBase.USERS_TABLE)
-public class Users {
+public class User {
     @PrimaryKey(autoGenerate = true)
     private int mUserId;
     private String mUsername;
     private String mPassword;
     private boolean mIsAdmin;
 
-    public Users(String username, String password) {
+    public User(String username, String password) {
         mUsername = username;
         mPassword = password;
     }

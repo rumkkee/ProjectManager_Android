@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Users.class, Board.class} , version = 1)
+@Database(entities = {User.class, Board.class} , version = 1)
 public abstract class AppDataBase extends RoomDatabase {
     public static final String DATABASE_NAME = "ProjectManager_android.db";
     public static final String USERS_TABLE = "users_table";
@@ -23,7 +23,7 @@ public abstract class AppDataBase extends RoomDatabase {
     private static volatile AppDataBase instance;
     private static final Object LOCK = new Object();
 
-    public abstract UsersDAO UserDAO();
+    public abstract UserDAO UserDAO();
     public abstract BoardDAO BoardDAO();
     
     private static final int NUMBER_OF_THREADS = 4;
@@ -40,8 +40,8 @@ public abstract class AppDataBase extends RoomDatabase {
                             .allowMainThreadQueries()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
-//                    Users testUser1 = createUser("testuser1", "testuser1", false);
-//                    Users testAdmin2 = createUser("admin2", "admin2", true);
+//                    User testUser1 = createUser("testuser1", "testuser1", false);
+//                    User testAdmin2 = createUser("admin2", "admin2", true);
 //                    instance.UserDAO().insert(testUser1, testAdmin2);
                 }
             }
@@ -57,11 +57,11 @@ public abstract class AppDataBase extends RoomDatabase {
 
                 System.out.println("Executing database Callback \n\n");
                 // Populating DB with users
-                UsersDAO usersDAO = instance.UserDAO();
+                UserDAO userDAO = instance.UserDAO();
 
-                Users testUser1 = createUser("testUser1", "testUser1", false);
-                Users admin2 = createUser("admin2", "admin2", true);
-                usersDAO.insert(testUser1, admin2);
+                User testUser1 = createUser("testUser1", "testUser1", false);
+                User admin2 = createUser("admin2", "admin2", true);
+                userDAO.insert(testUser1, admin2);
 
                 // Populating DB's admin2 with boards
                 BoardDAO boardDAO = instance.BoardDAO();
@@ -73,8 +73,8 @@ public abstract class AppDataBase extends RoomDatabase {
         }
     };
 
-    public static Users createUser(String name, String password, boolean isAdmin){
-        Users userCredentials = new Users(name, password);
+    public static User createUser(String name, String password, boolean isAdmin){
+        User userCredentials = new User(name, password);
         userCredentials.setIsAdmin(isAdmin);
         return userCredentials;
     }
