@@ -8,8 +8,11 @@
         android:id="@+id/textView"
         style="@style/word_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:background="@color/cardview_dark_background"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
         />
 
 </LinearLayout>
