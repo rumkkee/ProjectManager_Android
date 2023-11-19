@@ -28,7 +28,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
     Button mLogOutButton;
 
-    SharedPreferences mSharedPreferences;
+    SharedPreferencesHelper mSharedPreferencesHelper;
 
     Button mAdminButton;
 
@@ -42,25 +42,23 @@ public class LandingPageActivity extends AppCompatActivity {
         mLandingPageBinding = ActivityLandingPageBinding.inflate(getLayoutInflater());
         setContentView(mLandingPageBinding.getRoot());
 
-
-
         mAddBoardButton = mLandingPageBinding.addBoardFab;
         mLogOutButton = mLandingPageBinding.LogOutButton;
         mUserGreeting = mLandingPageBinding.userGreeting;
 
-        mSharedPreferences = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
+        SharedPreferences sharedPrefs = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
+        mSharedPreferencesHelper = new SharedPreferencesHelper(sharedPrefs);
+
         setUserGreeting();
         adminCheck();
 
-                RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         BoardListAdapter adapter = new BoardListAdapter(new BoardListAdapter.BoardDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mBoardViewModel = new ViewModelProvider(this).get(BoardViewModel.class);
-
-         // TODO: change getAllBoards() to getBoardsByID(getCurrentUserId())
-        mBoardViewModel.getBoardsByUserId(getCurrentUserId()).observe(this, boards -> {
+        mBoardViewModel.getBoardsByUserId(mSharedPreferencesHelper.getCurrentUserId()).observe(this, boards -> {
             adapter.submitList(boards);
         });
 
@@ -91,33 +89,20 @@ public class LandingPageActivity extends AppCompatActivity {
     }
 
     private void adminCheck() {
-        boolean isAdmin = mSharedPreferences.getBoolean("currentUser_isAdmin", false);
+        boolean isAdmin = mSharedPreferencesHelper.isCurrentUserAdmin();
         if(isAdmin){
             mAdminButton = mLandingPageBinding.adminButton;
             mAdminButton.setVisibility(View.VISIBLE);
         }
     }
 
-    private int getCurrentUserId(){
-        int currentUserId = mSharedPreferences.getInt("currentUser_id", -1);
-        System.out.println("Current user id: " + currentUserId);
-        return currentUserId;
-    }
-
-    private String getCurrentUsername(){
-        String currentUsername = mSharedPreferences.getString("currentUser_username", "");
-        return currentUsername;
-    }
-
     private void setUserGreeting(){
-        String currentUsername = mSharedPreferences.getString("currentUser_username", "");
+        String currentUsername = mSharedPreferencesHelper.getCurrentUsername();
         mUserGreeting.setText(getString(R.string.userGreeting) + currentUsername);
     }
 
     public static Intent getIntent(Context context){
         Intent intent = new Intent(context, LandingPageActivity.class);
-        //TODO: Have this intent take a boolean isAdmin
-        // This is used to determine whether to enable admin features (a button, for now)
         return intent;
     }
 }
