@@ -21,8 +21,11 @@ public class BoardSetupFragment extends Fragment {
     private Button mBackButton;
     private Button mSubmitButton;
 
+    private static boolean isOpen;
+
     public BoardSetupFragment() {
         // Required empty public constructor
+        isOpen = true;
     }
 
     /**
@@ -62,6 +65,7 @@ public class BoardSetupFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String boardNameInput = mBoardName.getText().toString();
+                System.out.println("New Board's name: " + boardNameInput );
                 removeFragment();
             }
         });
@@ -70,7 +74,12 @@ public class BoardSetupFragment extends Fragment {
     }
 
     private void removeFragment(){
+        isOpen = false;
         getParentFragmentManager().beginTransaction().remove(BoardSetupFragment.this).commit();
+    }
+
+    public static boolean isOpen(){
+        return isOpen;
     }
 
 }

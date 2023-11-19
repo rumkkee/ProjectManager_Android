@@ -34,6 +34,8 @@ public class LandingPageActivity extends AppCompatActivity {
 
     BoardViewModel mBoardViewModel;
 
+    BoardSetupFragment mBoardSetupFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,12 +81,13 @@ public class LandingPageActivity extends AppCompatActivity {
     }
 
     private void showBoardSetupFragment(){
-        BoardSetupFragment boardSetupFragment = new BoardSetupFragment();
-
-        getSupportFragmentManager().beginTransaction()
-                .add(android.R.id.content, boardSetupFragment)
-                .addToBackStack(null)
-                .commit();
+        if(!BoardSetupFragment.isOpen()){
+            mBoardSetupFragment = new BoardSetupFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(android.R.id.content, mBoardSetupFragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     private void adminCheck() {
