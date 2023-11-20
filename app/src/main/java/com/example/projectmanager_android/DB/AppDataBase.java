@@ -8,10 +8,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Board.class} , version = 1)
+@Database(entities = {User.class, Board.class, List.class} , version = 1)
 public abstract class AppDataBase extends RoomDatabase {
     public static final String DATABASE_NAME = "ProjectManager_android.db";
     public static final String USERS_TABLE = "users_table";
@@ -25,6 +26,8 @@ public abstract class AppDataBase extends RoomDatabase {
 
     public abstract UserDAO UserDAO();
     public abstract BoardDAO BoardDAO();
+
+    //public abstract ListDAO ListDAO();
     
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =
@@ -40,9 +43,6 @@ public abstract class AppDataBase extends RoomDatabase {
                             .allowMainThreadQueries()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
-//                    User testUser1 = createUser("testuser1", "testuser1", false);
-//                    User testAdmin2 = createUser("admin2", "admin2", true);
-//                    instance.UserDAO().insert(testUser1, testAdmin2);
                 }
             }
         }
