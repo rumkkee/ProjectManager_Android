@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Board.class, List.class} , version = 1)
+@Database(entities = {User.class, Board.class, CardList.class} , version = 1)
 public abstract class AppDataBase extends RoomDatabase {
     public static final String DATABASE_NAME = "ProjectManager_android.db";
     public static final String USERS_TABLE = "users_table";
@@ -27,7 +27,7 @@ public abstract class AppDataBase extends RoomDatabase {
     public abstract UserDAO UserDAO();
     public abstract BoardDAO BoardDAO();
 
-    //public abstract ListDAO ListDAO();
+    public abstract CardListDAO CardListDAO();
     
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =

@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = AppDataBase.LISTS_TABLE)
-public class List {
+public class CardList {
     @PrimaryKey(autoGenerate = true)
     private int mListId;
     private int mBoardId;
@@ -13,14 +13,14 @@ public class List {
     private String mTitle;
     private int positionOnBoard;
 
-    public List(String title){
+    public CardList(String title){
         mTitle = title;
     }
 
     @Override
     public String toString() {
         return
-                "List #" + mListId + "\n" +
+                "CardList #" + mListId + "\n" +
                 "Board Id #" + mBoardId + "\n" +
                 "User Id #" + mUserId + "\n" +
                 "Title: " + mTitle + "\n" +
