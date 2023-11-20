@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.projectmanager_android.DB.Board;
+import com.example.projectmanager_android.DB.BoardViewModel;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link BoardSetupFragment#newInstance} factory method to
@@ -20,6 +23,8 @@ public class BoardSetupFragment extends Fragment {
     private EditText mBoardName;
     private Button mBackButton;
     private Button mSubmitButton;
+
+    private BoardViewModel mBoardViewModel;
 
     private static boolean isOpen;
 
@@ -54,6 +59,8 @@ public class BoardSetupFragment extends Fragment {
         mBackButton = view.findViewById(R.id.BoardSetup_BackButton);
         mSubmitButton = view.findViewById(R.id.BoardSetupComplete_button);
 
+
+
         mBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,16 +71,32 @@ public class BoardSetupFragment extends Fragment {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String boardNameInput = mBoardName.getText().toString();
-                System.out.println("New Board's name: " + boardNameInput );
-                removeFragment();
+                if(!boardNameInput.isEmpty()){
+                    addBoard(boardNameInput);
+                    System.out.println("New Board's name: " + boardNameInput);
+                }
+
             }
         });
 
         return view;
     }
 
+    public void setViewModel(BoardViewModel boardViewModel){
+        mBoardViewModel = boardViewModel;
+    }
+
+    private void addBoard(String boardName){
+        Board board = new Board(boardName);
+        board.setUserId(SharedPreferencesHelper.getCurrentUserId());
+        mBoardViewModel.insert(board);
+        removeFragment();
+    }
+
     private void removeFragment(){
+        System.out.println("Board Fragment cleared!");
         isOpen = false;
         getParentFragmentManager().beginTransaction().remove(BoardSetupFragment.this).commit();
     }

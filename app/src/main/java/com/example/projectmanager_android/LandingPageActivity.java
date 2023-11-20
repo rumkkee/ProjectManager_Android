@@ -28,8 +28,6 @@ public class LandingPageActivity extends AppCompatActivity {
 
     Button mLogOutButton;
 
-    SharedPreferencesHelper mSharedPreferencesHelper;
-
     Button mAdminButton;
 
     BoardViewModel mBoardViewModel;
@@ -47,7 +45,7 @@ public class LandingPageActivity extends AppCompatActivity {
         mUserGreeting = mLandingPageBinding.userGreeting;
 
         SharedPreferences sharedPrefs = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
-        mSharedPreferencesHelper = new SharedPreferencesHelper(sharedPrefs);
+        SharedPreferencesHelper.setUserPrefs(sharedPrefs);
 
         setUserGreeting();
         adminCheck();
@@ -58,9 +56,11 @@ public class LandingPageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mBoardViewModel = new ViewModelProvider(this).get(BoardViewModel.class);
-        mBoardViewModel.getBoardsByUserId(mSharedPreferencesHelper.getCurrentUserId()).observe(this, boards -> {
+        mBoardViewModel.getBoardsByUserId(SharedPreferencesHelper.getCurrentUserId()).observe(this, boards -> {
             adapter.submitList(boards);
         });
+
+
 
         mAddBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +81,7 @@ public class LandingPageActivity extends AppCompatActivity {
     private void showBoardSetupFragment(){
         if(!BoardSetupFragment.isOpen()){
             mBoardSetupFragment = new BoardSetupFragment();
+            mBoardSetupFragment.setViewModel(mBoardViewModel);
             getSupportFragmentManager().beginTransaction()
                     .add(android.R.id.content, mBoardSetupFragment)
                     .addToBackStack(null)
@@ -89,7 +90,7 @@ public class LandingPageActivity extends AppCompatActivity {
     }
 
     private void adminCheck() {
-        boolean isAdmin = mSharedPreferencesHelper.isCurrentUserAdmin();
+        boolean isAdmin = SharedPreferencesHelper.isCurrentUserAdmin();
         if(isAdmin){
             mAdminButton = mLandingPageBinding.adminButton;
             mAdminButton.setVisibility(View.VISIBLE);
@@ -97,7 +98,7 @@ public class LandingPageActivity extends AppCompatActivity {
     }
 
     private void setUserGreeting(){
-        String currentUsername = mSharedPreferencesHelper.getCurrentUsername();
+        String currentUsername = SharedPreferencesHelper.getCurrentUsername();
         mUserGreeting.setText(getString(R.string.userGreeting) + currentUsername);
     }
 
