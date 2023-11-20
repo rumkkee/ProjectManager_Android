@@ -105,11 +105,10 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void addUserToSharedPreferences(User user){
-        //mSharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putInt("currentUser_id", user.getUserId());
-        editor.putString("currentUser_username", user.getUsername());
-        editor.putBoolean("currentUser_isAdmin", user.getIsAdmin());
+        editor.putInt(SharedPreferencesHelper.CURRENT_USER_ID_KEY, user.getUserId());
+        editor.putString(SharedPreferencesHelper.CURRENT_USER_USERNAME_KEY, user.getUsername());
+        editor.putBoolean(SharedPreferencesHelper.CURRENT_USER_IS_ADMIN_KEY, user.getIsAdmin());
         System.out.println("Stored user info in SharedPreferences: \n" + user );
         editor.apply();
         Toast.makeText(LogInActivity.this, "Log In ID saved. ", Toast.LENGTH_LONG).show();
