@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey;
 
 import java.sql.Date;
 
-@Entity(tableName = AppDataBase.BOARDS_TABLE)
+@Entity(tableName = AppDataBase.CARDS_TABLE)
 public class Card {
     @PrimaryKey(autoGenerate = true)
     private int mCardId;
@@ -14,8 +14,6 @@ public class Card {
 
     private String mTitle;
     private String mDescription;
-    private Date mStartDate;
-    private Date mDueDate;
     private int mPositionInList;
 
     @Override
@@ -67,22 +65,6 @@ public class Card {
 
     public void setDescription(String description) {
         mDescription = description;
-    }
-
-    public Date getStartDate() {
-        return mStartDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        mStartDate = startDate;
-    }
-
-    public Date getDueDate() {
-        return mDueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        mDueDate = dueDate;
     }
 
     public int getPositionInList() {

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "719dfb5b2bea086580c4b1739ff485e3",
+    "identityHash": "85abc4e635f765968ca0087011324a56",
     "entities": [
       {
         "tableName": "users_table",
@@ -85,12 +85,106 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "lists_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mListId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mBoardId` INTEGER NOT NULL, `mUserId` INTEGER NOT NULL, `mTitle` TEXT, `positionOnBoard` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mListId",
+            "columnName": "mListId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mBoardId",
+            "columnName": "mBoardId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTitle",
+            "columnName": "mTitle",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "positionOnBoard",
+            "columnName": "positionOnBoard",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mListId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "cards_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mCardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `mCardListId` INTEGER NOT NULL, `mUserId` INTEGER NOT NULL, `mTitle` TEXT, `mDescription` TEXT, `mPositionInList` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "mCardId",
+            "columnName": "mCardId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCardListId",
+            "columnName": "mCardListId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mUserId",
+            "columnName": "mUserId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTitle",
+            "columnName": "mTitle",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mDescription",
+            "columnName": "mDescription",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPositionInList",
+            "columnName": "mPositionInList",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "mCardId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '719dfb5b2bea086580c4b1739ff485e3')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '85abc4e635f765968ca0087011324a56')"
     ]
   }
 }
