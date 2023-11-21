@@ -34,6 +34,11 @@ public class BoardActivity extends AppCompatActivity {
             mBoardTitleTextView.setText(currentBoard.getTitle());
         }
 
+        // TODO: Add card lists to a board
+
+        // TODO: Add the CardList observer to display all card lists associated with this board
+
+
         mExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
