@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter;
 public class CardListAdapter extends ListAdapter<CardList, CardListViewHolder> {
 
 
-    protected CardListAdapter(@NonNull DiffUtil.ItemCallback<CardList> diffCallback) {
+    public CardListAdapter(@NonNull DiffUtil.ItemCallback<CardList> diffCallback) {
         super(diffCallback);
     }
 

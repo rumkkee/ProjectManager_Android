@@ -11,16 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projectmanager_android.R;
 
 public class CardListViewHolder extends RecyclerView.ViewHolder {
-    private final TextView cardListItemView;
+    private final TextView cardListTitleTextView;
     private int cardListId;
     private String cardListName;
 
     public CardListViewHolder(@NonNull View itemView) {
         super(itemView);
-        cardListItemView = itemView.findViewById(R.id.recyclerView);
+        cardListTitleTextView = itemView.findViewById(R.id.cardList_title);
     }
 
     public void bind(int cardListId, String cardListName){
+        cardListTitleTextView.setText(cardListName);
         this.cardListId = cardListId;
         this.cardListName = cardListName;
     }
