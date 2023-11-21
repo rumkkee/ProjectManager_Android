@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectmanager_android.BoardActivity;
 import com.example.projectmanager_android.R;
+import com.example.projectmanager_android.SharedPreferencesHelper;
 
 public class BoardViewHolder extends RecyclerView.ViewHolder {
     private final TextView boardItemView;
@@ -31,7 +32,7 @@ public class BoardViewHolder extends RecyclerView.ViewHolder {
                 // TODO: Create a SharedPrefs value to store the currentBoardId.
                 //    A value of -1 could mean that no board is currently open.
                 //TODO: store this.boardId in SharedPrefs.
-                intent.putExtra("currentBoardId", boardId);
+                SharedPreferencesHelper.setCurrentBoardId(boardId);
                 context.startActivity(intent);
             }
         });

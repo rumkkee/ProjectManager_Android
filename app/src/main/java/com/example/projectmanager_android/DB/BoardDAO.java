@@ -30,4 +30,8 @@ public interface BoardDAO {
 
     @Query("SELECT * FROM " + AppDataBase.BOARDS_TABLE)
     LiveData<List<Board>> getAllBoards();
+
+    @Query("SELECT * FROM " + AppDataBase.BOARDS_TABLE +
+            " WHERE mBoardId == :boardId")
+    Board getBoardByBoardId(int boardId);
 }

@@ -16,9 +16,6 @@ public class BoardListAdapter extends ListAdapter<Board, BoardViewHolder> {
     @NonNull
     @Override
     public BoardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-
-
         return BoardViewHolder.create(parent);
     }
 
