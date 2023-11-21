@@ -22,4 +22,6 @@
     <string name="BoardSetup_Cancel_text">Cancel</string>
     <string name="button_save">Save</string>
     <string name="boardActivity_boardNamePlaceholderText">Board Name</string>
+    <string name="card_list_name_placeholder">Card List Name</string>
+    <string name="CardList_addCard_text">+ Add Card</string>
 </resources>

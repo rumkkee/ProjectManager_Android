@@ -32,5 +32,9 @@ public interface CardListDAO {
             " WHERE mUserId == :userid")
     LiveData<List<CardList>> getListsbyUserId(int userid);
 
+    @Query("SELECT * FROM " + AppDataBase.LISTS_TABLE +
+            " WHERE mListId == :listId")
+    CardList getListByListId(int listId);
+
 
 }

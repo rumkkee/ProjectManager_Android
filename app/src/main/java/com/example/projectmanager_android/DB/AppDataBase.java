@@ -63,12 +63,21 @@ public abstract class AppDataBase extends RoomDatabase {
                 User admin2 = createUser("admin2", "admin2", true);
                 userDAO.insert(testUser1, admin2);
 
+                admin2 = userDAO.getUserByID(2);
+
                 // Populating DB's admin2 with boards
                 BoardDAO boardDAO = instance.BoardDAO();
-                Board board1 = createBoard("Pandora Logs", userDAO.getUserByUsername("admin2").get(0).getUserId());
-                Board board2 = createBoard("Anomalocaris Tributes", userDAO.getUserByUsername("admin2").get(0).getUserId());
-                Board board3 = createBoard("Watership Downloads", userDAO.getUserByUsername("admin2").get(0).getUserId());
+                Board board1 = createBoard("Pandora Logs", admin2.getUserId());
+                Board board2 = createBoard("Anomalocaris Tributes", admin2.getUserId());
+                Board board3 = createBoard("Watership Downloads", admin2.getUserId());
                 boardDAO.insert(board1, board2, board3);
+
+                board2 = boardDAO.getBoardByBoardId(2);
+
+                CardListDAO cardListDAO = instance.CardListDAO();
+                CardList cardList1 = createCardList("Vetulicolia", board2,  board2.getUserId());
+                CardList cardList2 = createCardList("Worms", board2, board2.getUserId());
+                cardListDAO.insert(cardList1, cardList2);
 
                 System.out.println("Should print testUser1 info: \n" + userDAO.getUserByID(1));
                 System.out.println("Should print admin2 info: \n" + userDAO.getUserByID(2));
@@ -87,5 +96,12 @@ public abstract class AppDataBase extends RoomDatabase {
         Board board = new Board(title);
         board.setUserId(userID);
         return board;
+    }
+
+    public static CardList createCardList(String title, Board board, int userId){
+        CardList cardList = new CardList(title);
+        cardList.setBoardId(board.getBoardId());
+        cardList.setUserId(userId);
+        return cardList;
     }
 }

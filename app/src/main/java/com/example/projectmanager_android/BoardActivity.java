@@ -1,6 +1,8 @@
 package com.example.projectmanager_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.projectmanager_android.DB.AppDataBase;
 import com.example.projectmanager_android.DB.Board;
+import com.example.projectmanager_android.DB.CardListAdapter;
+import com.example.projectmanager_android.DB.CardListViewModel;
 import com.example.projectmanager_android.databinding.ActivityBoardBinding;
 
 public class BoardActivity extends AppCompatActivity {
@@ -19,6 +23,8 @@ public class BoardActivity extends AppCompatActivity {
     ActivityBoardBinding mActivityBoardBinding;
     ImageButton mExitButton;
     TextView mBoardTitleTextView;
+
+    CardListViewModel mCardListViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,15 @@ public class BoardActivity extends AppCompatActivity {
             System.out.println(currentBoard.getTitle());
             mBoardTitleTextView.setText(currentBoard.getTitle());
         }
+
+        RecyclerView recyclerView_cardLists = findViewById(R.id.boardActivity_recyclerView_cardLists);
+        CardListAdapter cardListAdapter = new CardListAdapter(new CardListAdapter.CardListDiff());
+        recyclerView_cardLists.setAdapter(cardListAdapter);
+
+        mCardListViewModel = new ViewModelProvider(this).get(CardListViewModel.class);
+        mCardListViewModel.getCardListsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cardLists -> {
+            cardListAdapter.submitList(cardLists);
+        });
 
         mExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
