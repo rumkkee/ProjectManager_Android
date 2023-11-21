@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.projectmanager_android.DB.Board;
 import com.example.projectmanager_android.DB.BoardListAdapter;
 import com.example.projectmanager_android.DB.BoardViewModel;
 import com.example.projectmanager_android.databinding.ActivityLandingPageBinding;
@@ -60,8 +61,6 @@ public class LandingPageActivity extends AppCompatActivity {
             adapter.submitList(boards);
         });
 
-
-
         mAddBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +75,16 @@ public class LandingPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+//        adapter.setOnItemClickListener(new BoardListAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(Board board) {
+//                System.out.println("Board clicked successfully!");
+//                System.out.println(board);
+////                Intent intent = BoardActivity.getIntent(getApplicationContext());
+////                startActivity(intent);
+//            }
+//        });
     }
 
     private void showBoardSetupFragment(){

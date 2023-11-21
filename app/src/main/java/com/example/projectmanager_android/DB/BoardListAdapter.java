@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 public class BoardListAdapter extends ListAdapter<Board, BoardViewHolder> {
+//    private OnItemClickListener listener;
 
     public BoardListAdapter(@NonNull DiffUtil.ItemCallback<Board> diffCallback){
         super(diffCallback);
@@ -21,8 +22,9 @@ public class BoardListAdapter extends ListAdapter<Board, BoardViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BoardViewHolder holder, int position) {
         Board current = getItem(position);
-        holder.bind(current.getTitle());
+        holder.bind(current.getTitle(), current.getBoardId());
     }
+
 
     public static class BoardDiff extends DiffUtil.ItemCallback<Board>{
 
@@ -37,4 +39,14 @@ public class BoardListAdapter extends ListAdapter<Board, BoardViewHolder> {
             return oldItem.getTitle().equals(newItem.getTitle());
         }
     }
+
+
+
+//    public interface OnItemClickListener{
+//        void onItemClick(Board board);
+//    }
+
+//    public void setOnItemClickListener(OnItemClickListener listener){
+//        this.listener = listener;
+//    }
 }
