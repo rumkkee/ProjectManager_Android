@@ -13,14 +13,16 @@ import com.example.projectmanager_android.R;
 public class CardListViewHolder extends RecyclerView.ViewHolder {
     private final TextView cardListItemView;
     private int cardListId;
+    private String cardListName;
 
     public CardListViewHolder(@NonNull View itemView) {
         super(itemView);
         cardListItemView = itemView.findViewById(R.id.recyclerView);
     }
 
-    public void bind(int cardListId){
+    public void bind(int cardListId, String cardListName){
         this.cardListId = cardListId;
+        this.cardListName = cardListName;
     }
 
     public static CardListViewHolder create(ViewGroup parent){
