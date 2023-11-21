@@ -24,10 +24,8 @@ public class CardListViewHolder extends RecyclerView.ViewHolder {
     }
 
     public static CardListViewHolder create(ViewGroup parent){
-        //TODO: Create a layout for the CardList,
-        // then replace it with the current layout here
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_item, parent, false);
+                .inflate(R.layout.recyclerview_card_list, parent, false);
         return new CardListViewHolder(view);
     }
 }
