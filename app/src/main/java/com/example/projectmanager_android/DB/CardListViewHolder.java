@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectmanager_android.R;
@@ -14,10 +17,19 @@ public class CardListViewHolder extends RecyclerView.ViewHolder {
     private final TextView cardListTitleTextView;
     private int cardListId;
     private String cardListName;
+    private CardViewModel mCardViewModel;
 
     public CardListViewHolder(@NonNull View itemView) {
         super(itemView);
         cardListTitleTextView = itemView.findViewById(R.id.cardList_title);
+        RecyclerView recyclerView_cards = itemView.findViewById(R.id.recyclerView_Cards);
+        CardAdapter cardAdapter = new CardAdapter(new CardAdapter.CardDiff());
+        recyclerView_cards.setAdapter(cardAdapter);
+
+        mCardViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(CardViewModel.class);
+        mCardViewModel.getCardsByCardListId(cardListId).observe((LifecycleOwner) this, cards -> {
+            cardAdapter.submitList(cards);
+        });
     }
 
     public void bind(int cardListId, String cardListName){
