@@ -87,7 +87,7 @@ public class BoardActivity extends AppCompatActivity {
         mCardListAdderFragment = new CardListAdderFragment(mCardListViewModel);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.cardAdder_fragment, mCardListAdderFragment)
+                .add(android.R.id.content, mCardListAdderFragment)
                 .addToBackStack(null)
                 .commit();
     }

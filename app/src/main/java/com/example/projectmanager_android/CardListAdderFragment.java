@@ -19,6 +19,7 @@ public class CardListAdderFragment extends ItemAdderFragment {
     @Override
     protected void addItem(String itemName) {
         System.out.println("Adding CardList Item!");
+        System.out.println("Current User Id: " + SharedPreferencesHelper.getCurrentUserId());
         System.out.println("Current Board Id:" + SharedPreferencesHelper.getCurrentBoardId());
         CardList cardList = new CardList(itemName);
         cardList.setUserId(SharedPreferencesHelper.getCurrentUserId());

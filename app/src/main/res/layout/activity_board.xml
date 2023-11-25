@@ -44,11 +44,12 @@
             />
     </LinearLayout>
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxHeight="680dp"
         android:minHeight="680dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,20 +67,23 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/recyclerview_card_list" />
+                tools:listitem="@layout/recyclerview_card_list"
+                />
 
             <LinearLayout
                 android:id="@+id/boardActivity_AddListLayout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:nestedScrollingEnabled="true"
                 android:orientation="vertical"
                 >
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:background="#CCCCCC"
-                    >
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/boardActivity_AddListClickableText"
                         android:layout_width="300dp"
@@ -88,25 +92,24 @@
                         android:text="Add List"
                         android:textSize="18sp"
                         android:textStyle="bold" />
+
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="4dp"
-                        android:layout_marginHorizontal="4dp">
-                     >
+                        android:layout_marginHorizontal="4dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="4dp">
+
                         <androidx.fragment.app.FragmentContainerView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:layout="@layout/fragment_item_adder"/>
+                            tools:layout="@layout/fragment_item_adder" />
                     </LinearLayout>
                 </LinearLayout>
-
-
             </LinearLayout>
 
         </LinearLayout>
 
-    </HorizontalScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
