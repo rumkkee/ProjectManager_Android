@@ -26,13 +26,13 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
         this.cardName = cardName;
     }
 
-    public static CardListViewHolder create(ViewGroup parent){
+    public static CardViewHolder create(ViewGroup parent){
         // TODO: Make a recyclerView specific for cards.
         //  Update the layout to a recyclerView.
         //  (For now, the recyclerView for boards will suffice.)
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_item, parent, false);
-        return new CardListViewHolder(view);
+        return new CardViewHolder(view);
     }
 
 }

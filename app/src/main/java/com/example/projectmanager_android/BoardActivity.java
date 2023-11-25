@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.projectmanager_android.DB.AppDataBase;
 import com.example.projectmanager_android.DB.Board;
+import com.example.projectmanager_android.DB.CardAdapter;
 import com.example.projectmanager_android.DB.CardListAdapter;
 import com.example.projectmanager_android.DB.CardListViewModel;
 import com.example.projectmanager_android.DB.CardViewModel;
@@ -56,8 +57,13 @@ public class BoardActivity extends AppCompatActivity {
             cardListAdapter.submitList(cardLists);
         });
 
-        mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
+        CardAdapter cardAdapter = new CardAdapter(new CardAdapter.CardDiff());
 
+
+        mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
+        mCardViewModel.getCardsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cards -> {
+
+        });
 
         mExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
