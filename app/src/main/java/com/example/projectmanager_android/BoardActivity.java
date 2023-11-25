@@ -24,6 +24,8 @@ public class BoardActivity extends AppCompatActivity {
     ImageButton mExitButton;
     TextView mBoardTitleTextView;
 
+    TextView mAddCardTextView;
+
     CardListViewModel mCardListViewModel;
 
     @Override
@@ -34,6 +36,8 @@ public class BoardActivity extends AppCompatActivity {
 
         mExitButton = mActivityBoardBinding.boardActivityExitButton;
         mBoardTitleTextView = mActivityBoardBinding.boardActivityBoardHeader;
+        mAddCardTextView = mActivityBoardBinding.boardActivityAddListClickableText;
+
         Board currentBoard = AppDataBase.getInstance(this).BoardDAO().getBoardByBoardId(SharedPreferencesHelper.getCurrentBoardId());
         if(currentBoard != null){
             System.out.println(currentBoard.getTitle());
@@ -57,6 +61,14 @@ public class BoardActivity extends AppCompatActivity {
 
                 Intent intent = LandingPageActivity.getIntent(getApplicationContext());
                 startActivity(intent);
+            }
+        });
+
+        mAddCardTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Create a Fragment for adding a CardList
+                //  Have this click event open that fragment.
             }
         });
 

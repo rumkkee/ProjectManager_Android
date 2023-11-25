@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/BoardActivity_Root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BoardActivity">
@@ -46,20 +47,18 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/BoardActivity_HeaderLayout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:minHeight="680dp"
         android:maxHeight="680dp"
-        >
+        android:minHeight="680dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/BoardActivity_HeaderLayout">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/boardActivity_recyclerView_cardLists"
@@ -70,8 +69,10 @@
                 tools:listitem="@layout/recyclerview_card_list" />
 
             <LinearLayout
+                android:id="@+id/boardActivity_AddListLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/boardActivity_AddListClickableText"
@@ -81,14 +82,11 @@
                     android:gravity="center_horizontal"
                     android:text="Add List"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-
-                    />
+                    android:textStyle="bold" />
             </LinearLayout>
 
-
         </LinearLayout>
-    </HorizontalScrollView>
 
+    </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
