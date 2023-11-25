@@ -41,49 +41,13 @@
             android:textSize="16sp"
             android:textStyle="bold"
             />
-        <LinearLayout
-            android:id="@+id/itemAdder_layoutGroup"
-            android:orientation="vertical"
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/cardAdder_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            tools:visibility="visible"
-            >
-            <EditText
-                android:id="@+id/itemAdder_titleInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="title"
-                />
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-                <Button
-                    android:id="@+id/itemAdder_addButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    />
-                <Button
-                    android:id="@+id/itemAdder_cancelButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cancel"
-                    android:textSize="16sp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
-
-
-
+            tools:layout="@layout/fragment_item_adder"
+            />
 
     </LinearLayout>
 
