@@ -11,9 +11,9 @@
         android:id="@+id/itemAdder_layoutGroup"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        tools:visibility="visible"
+        android:layout_height="wrap_content">
+<!--        android:visibility="gone"-->
+<!--        tools:visibility="visible"-->
         >
         <EditText
             android:id="@+id/itemAdder_titleInput"

@@ -15,7 +15,7 @@ import android.widget.EditText;
 // * Use the {@link ItemAdderFragment#newInstance} factory method to
 // * create an instance of this fragment.
 // */
-public abstract class ItemAdderFragment extends Fragment {
+public class ItemAdderFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,7 +83,7 @@ public abstract class ItemAdderFragment extends Fragment {
             public void onClick(View v) {
                 String itemNameInput = mItemNameEditText.getText().toString();
                 if(!itemNameInput.isEmpty()){
-
+                    addItem(itemNameInput);
                 }
             }
         });
@@ -92,7 +92,9 @@ public abstract class ItemAdderFragment extends Fragment {
     }
 
 
-    protected abstract void addItem(String itemName);
+    protected void addItem(String itemName){
+        System.out.println("Error: Default ItemAdderFragment called. \n Expected: overridden method call");
+    }
 
     protected void removeFragment(){
         isOpen = false;

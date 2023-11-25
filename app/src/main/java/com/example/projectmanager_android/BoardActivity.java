@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -24,9 +23,11 @@ public class BoardActivity extends AppCompatActivity {
     ImageButton mExitButton;
     TextView mBoardTitleTextView;
 
-    TextView mAddCardTextView;
+    TextView mAddCardListTextView;
 
     CardListViewModel mCardListViewModel;
+
+    CardListAdderFragment mCardListAdderFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class BoardActivity extends AppCompatActivity {
 
         mExitButton = mActivityBoardBinding.boardActivityExitButton;
         mBoardTitleTextView = mActivityBoardBinding.boardActivityBoardHeader;
-        mAddCardTextView = mActivityBoardBinding.boardActivityAddListClickableText;
+        mAddCardListTextView = mActivityBoardBinding.boardActivityAddListClickableText;
 
         Board currentBoard = AppDataBase.getInstance(this).BoardDAO().getBoardByBoardId(SharedPreferencesHelper.getCurrentBoardId());
         if(currentBoard != null){
@@ -64,11 +65,13 @@ public class BoardActivity extends AppCompatActivity {
             }
         });
 
-        mAddCardTextView.setOnClickListener(new View.OnClickListener() {
+        mAddCardListTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Create a Fragment for adding a CardList
-                //  Have this click event open that fragment.
+                System.out.println("Is CardListAdder Open? : " + CardListAdderFragment.isOpen());
+                if(!CardListAdderFragment.isOpen()){
+                    showCardListAdderFragment();
+                }
             }
         });
 
@@ -78,4 +81,15 @@ public class BoardActivity extends AppCompatActivity {
         Intent intent = new Intent(context, BoardActivity.class);
         return intent;
     }
+
+    private void showCardListAdderFragment(){
+        System.out.println("CardListAdderFragment should be created and shown");
+        mCardListAdderFragment = new CardListAdderFragment(mCardListViewModel);
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.cardAdder_fragment, mCardListAdderFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
 }
