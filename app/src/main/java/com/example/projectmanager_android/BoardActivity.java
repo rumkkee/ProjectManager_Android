@@ -15,6 +15,7 @@ import com.example.projectmanager_android.DB.AppDataBase;
 import com.example.projectmanager_android.DB.Board;
 import com.example.projectmanager_android.DB.CardListAdapter;
 import com.example.projectmanager_android.DB.CardListViewModel;
+import com.example.projectmanager_android.DB.CardViewModel;
 import com.example.projectmanager_android.databinding.ActivityBoardBinding;
 
 public class BoardActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class BoardActivity extends AppCompatActivity {
     TextView mAddCardListTextView;
 
     CardListViewModel mCardListViewModel;
+    CardViewModel mCardViewModel;
 
     CardListAdderFragment mCardListAdderFragment;
 
@@ -53,6 +55,9 @@ public class BoardActivity extends AppCompatActivity {
         mCardListViewModel.getCardListsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cardLists -> {
             cardListAdapter.submitList(cardLists);
         });
+
+        mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
+
 
         mExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
