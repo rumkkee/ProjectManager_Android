@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -24,7 +23,11 @@ public class BoardActivity extends AppCompatActivity {
     ImageButton mExitButton;
     TextView mBoardTitleTextView;
 
+    TextView mAddCardListTextView;
+
     CardListViewModel mCardListViewModel;
+
+    CardListAdderFragment mCardListAdderFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class BoardActivity extends AppCompatActivity {
 
         mExitButton = mActivityBoardBinding.boardActivityExitButton;
         mBoardTitleTextView = mActivityBoardBinding.boardActivityBoardHeader;
+        mAddCardListTextView = mActivityBoardBinding.boardActivityAddListClickableText;
+
         Board currentBoard = AppDataBase.getInstance(this).BoardDAO().getBoardByBoardId(SharedPreferencesHelper.getCurrentBoardId());
         if(currentBoard != null){
             System.out.println(currentBoard.getTitle());
@@ -60,10 +65,31 @@ public class BoardActivity extends AppCompatActivity {
             }
         });
 
+        mAddCardListTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Is CardListAdder Open? : " + CardListAdderFragment.isOpen());
+                if(!CardListAdderFragment.isOpen()){
+                    showCardListAdderFragment();
+                }
+            }
+        });
+
     }
 
     public static Intent getIntent(Context context){
         Intent intent = new Intent(context, BoardActivity.class);
         return intent;
     }
+
+    private void showCardListAdderFragment(){
+        System.out.println("CardListAdderFragment should be created and shown");
+        mCardListAdderFragment = new CardListAdderFragment(mCardListViewModel);
+
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, mCardListAdderFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
 }
