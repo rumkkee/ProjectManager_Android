@@ -7,6 +7,7 @@ public abstract class SharedPreferencesHelper {
     public static final String CURRENT_USER_USERNAME_KEY = "currentUser_username";
     public static final String CURRENT_USER_IS_ADMIN_KEY = "currentUser_isAdmin";
     public static final String CURRENT_BOARD_ID_KEY = "currentBoard_id";
+
     private static SharedPreferences mCurrentUserPrefs;
 
     public static void setUserPrefs(SharedPreferences currentUserPrefs){
@@ -35,6 +36,7 @@ public abstract class SharedPreferencesHelper {
     }
 
     public static void setCurrentBoardId(int boardId){
+        System.out.println("Set Current Board ID");
         SharedPreferences.Editor editor = mCurrentUserPrefs.edit();
         editor.putInt(CURRENT_BOARD_ID_KEY, boardId);
         editor.apply();

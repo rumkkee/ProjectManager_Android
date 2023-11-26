@@ -26,10 +26,21 @@ public class CardListViewHolder extends RecyclerView.ViewHolder {
         CardAdapter cardAdapter = new CardAdapter(new CardAdapter.CardDiff());
         recyclerView_cards.setAdapter(cardAdapter);
 
-        mCardViewModel = new ViewModelProvider((ViewModelStoreOwner) this).get(CardViewModel.class);
-        mCardViewModel.getCardsByCardListId(cardListId).observe((LifecycleOwner) this, cards -> {
+        ViewModelStoreOwner viewModelStoreOwner = (ViewModelStoreOwner) itemView.getRootView().getContext();
+        LifecycleOwner lifecycleOwner = (LifecycleOwner) itemView.getRootView().getContext();
+
+        mCardViewModel = new ViewModelProvider(viewModelStoreOwner).get(CardViewModel.class);
+        mCardViewModel.getCardsByCardListId(cardListId).observe(lifecycleOwner, cards -> {
             cardAdapter.submitList(cards);
         });
+
+        cardListTitleTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Title was clicked!");
+            }
+        });
+
     }
 
     public void bind(int cardListId, String cardListName){

@@ -23,6 +23,9 @@ public interface CardDAO {
     @Query("SELECT * FROM " + AppDataBase.CARDS_TABLE)
     LiveData<List<Card>> getAllCards();
 
+    @Query("SELECT * FROM " + AppDataBase.CARDS_TABLE)
+    List<Card> getAllCardsAsList();
+
     @Query("SELECT * FROM " + AppDataBase.CARDS_TABLE +
             " WHERE mUserId == :userId")
     LiveData<List<Card>> getCardsByUserId(int userId);

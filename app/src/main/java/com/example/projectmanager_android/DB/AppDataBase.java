@@ -79,9 +79,24 @@ public abstract class AppDataBase extends RoomDatabase {
                 CardList cardList2 = createCardList("Worms", board2, board2.getUserId());
                 cardListDAO.insert(cardList1, cardList2);
 
-                System.out.println("Should print testUser1 info: \n" + userDAO.getUserByID(1));
-                System.out.println("Should print admin2 info: \n" + userDAO.getUserByID(2));
-                System.out.println(admin2);
+                cardList1 = cardListDAO.getListByListId(1);
+
+                CardDAO cardDAO = instance.CardDAO();
+                Card card1 = createCard("Rectangulata", board2, cardList1, board2.getUserId());
+                Card card2 = createCard("Cuneata", board2, cardList1, board2.getUserId());
+                Card card3 = createCard("Venustum", board2, cardList1, board2.getUserId());
+                cardDAO.insert(card1, card2, card3);
+
+                System.out.println("End of insertions!");
+                System.out.println("Printing cards!\n\n\n\n\n");
+                for (Card card : cardDAO.getAllCardsAsList()) {
+                    System.out.println(card.toString());
+                }
+
+
+//                System.out.println("Should print testUser1 info: \n" + userDAO.getUserByID(1));
+//                System.out.println("Should print admin2 info: \n" + userDAO.getUserByID(2));
+//                System.out.println(admin2);
             });
         }
     };
@@ -103,5 +118,14 @@ public abstract class AppDataBase extends RoomDatabase {
         cardList.setBoardId(board.getBoardId());
         cardList.setUserId(userId);
         return cardList;
+    }
+
+    public static Card createCard(String title, Board board, CardList cardList, int userId){
+        Card card = new Card();
+        card.setTitle(title);
+        card.setBoardId(board.getBoardId());
+        card.setCardListId(cardList.getListId());
+        card.setUserId(userId);
+        return card;
     }
 }
