@@ -48,6 +48,7 @@ public class BoardActivity extends AppCompatActivity {
             mBoardTitleTextView.setText(currentBoard.getTitle());
         }
 
+        // CardList observer setup
         RecyclerView recyclerView_cardLists = findViewById(R.id.boardActivity_recyclerView_cardLists);
         CardListAdapter cardListAdapter = new CardListAdapter(new CardListAdapter.CardListDiff());
         recyclerView_cardLists.setAdapter(cardListAdapter);
@@ -57,13 +58,14 @@ public class BoardActivity extends AppCompatActivity {
             cardListAdapter.submitList(cardLists);
         });
 
-        CardAdapter cardAdapter = new CardAdapter(new CardAdapter.CardDiff());
-
-
-        mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
-        mCardViewModel.getCardsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cards -> {
-
-        });
+        // Card observer setup
+//        RecyclerView recyclerView_cards = recyclerView_cardLists.findViewById(R.id.);
+//        CardAdapter cardAdapter = new CardAdapter(new CardAdapter.CardDiff());
+//        recyclerView_cards.setAdapter(cardAdapter);
+//        mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
+//        mCardViewModel.getAllCards().observe(this, cards -> {
+//            cardAdapter.submitList(cards);
+//        });
 
         mExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
