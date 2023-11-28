@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.example.projectmanager_android.DB.AppDataBase;
 import com.example.projectmanager_android.DB.Board;
 import com.example.projectmanager_android.DB.CardAdapter;
-import com.example.projectmanager_android.DB.CardListAdapter;
 import com.example.projectmanager_android.DB.CardListViewModel;
 import com.example.projectmanager_android.DB.CardViewModel;
 import com.example.projectmanager_android.databinding.ActivityBoardBinding;
@@ -25,12 +24,13 @@ public class BoardActivity extends AppCompatActivity {
     ImageButton mExitButton;
     TextView mBoardTitleTextView;
 
-    TextView mAddCardListTextView;
+    TextView mAddCardTextView;
 
     CardListViewModel mCardListViewModel;
     CardViewModel mCardViewModel;
 
     CardListAdderFragment mCardListAdderFragment;
+    CardAdderFragment mCardAdderFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class BoardActivity extends AppCompatActivity {
 
         mExitButton = mActivityBoardBinding.boardActivityExitButton;
         mBoardTitleTextView = mActivityBoardBinding.boardActivityBoardHeader;
-        mAddCardListTextView = mActivityBoardBinding.boardActivityAddListClickableText;
+        mAddCardTextView = mActivityBoardBinding.boardActivityAddCardClickableText;
 
         Board currentBoard = AppDataBase.getInstance(this).BoardDAO().getBoardByBoardId(SharedPreferencesHelper.getCurrentBoardId());
         if(currentBoard != null){
@@ -59,13 +59,13 @@ public class BoardActivity extends AppCompatActivity {
 //        });
 
         // Card observer setup
-//        RecyclerView recyclerView_cards = findViewById(R.id.recyclerView_Cards);
-//        CardAdapter cardAdapter = new CardAdapter(new CardAdapter.CardDiff());
-//        recyclerView_cards.setAdapter(cardAdapter);
-//        mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
-//        mCardViewModel.getCardsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cards -> {
-//            cardAdapter.submitList(cards);
-//        });
+        RecyclerView recyclerView_cards = findViewById(R.id.boardActivity_recyclerView_cards);
+        CardAdapter cardAdapter = new CardAdapter(new CardAdapter.CardDiff());
+        recyclerView_cards.setAdapter(cardAdapter);
+        mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
+        mCardViewModel.getCardsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cards -> {
+            cardAdapter.submitList(cards);
+        });
 
         mExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,12 +78,15 @@ public class BoardActivity extends AppCompatActivity {
             }
         });
 
-        mAddCardListTextView.setOnClickListener(new View.OnClickListener() {
+        mAddCardTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("Is CardListAdder Open? : " + CardListAdderFragment.isOpen());
-                if(!CardListAdderFragment.isOpen()){
-                    showCardListAdderFragment();
+//                if(!CardListAdderFragment.isOpen()){
+//                    showCardListAdderFragment();
+//                }
+                if(!CardAdderFragment.isOpen()){
+                    showCardAdderFragment();
                 }
             }
         });
@@ -101,6 +104,15 @@ public class BoardActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .add(android.R.id.content, mCardListAdderFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void showCardAdderFragment(){
+        mCardAdderFragment = new CardAdderFragment(mCardViewModel);
+
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, mCardAdderFragment)
                 .addToBackStack(null)
                 .commit();
     }

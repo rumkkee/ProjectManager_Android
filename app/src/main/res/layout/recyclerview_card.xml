@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
     <TextView
         android:id="@+id/recyclerView_Card"
@@ -10,7 +11,9 @@
         android:layout_width="300dp"
         android:layout_height="56dp"
         android:background="@color/cardview_dark_background"
-
+        android:textColor="@color/white"
+        android:text="Lorem"
         android:layout_marginVertical="4dp"
+        android:gravity="center_vertical"
         />
 </LinearLayout>
