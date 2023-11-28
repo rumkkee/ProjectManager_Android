@@ -49,14 +49,14 @@ public class BoardActivity extends AppCompatActivity {
         }
 
         // CardList observer setup
-        RecyclerView recyclerView_cardLists = findViewById(R.id.boardActivity_recyclerView_cardLists);
-        CardListAdapter cardListAdapter = new CardListAdapter(new CardListAdapter.CardListDiff());
-        recyclerView_cardLists.setAdapter(cardListAdapter);
-
-        mCardListViewModel = new ViewModelProvider(this).get(CardListViewModel.class);
-        mCardListViewModel.getCardListsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cardLists -> {
-            cardListAdapter.submitList(cardLists);
-        });
+//        RecyclerView recyclerView_cardLists = findViewById(R.id.boardActivity_recyclerView_cardLists);
+//        CardListAdapter cardListAdapter = new CardListAdapter(new CardListAdapter.CardListDiff());
+//        recyclerView_cardLists.setAdapter(cardListAdapter);
+//
+//        mCardListViewModel = new ViewModelProvider(this).get(CardListViewModel.class);
+//        mCardListViewModel.getCardListsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cardLists -> {
+//            cardListAdapter.submitList(cardLists);
+//        });
 
         // Card observer setup
 //        RecyclerView recyclerView_cards = recyclerView_cardLists.findViewById(R.id.);
