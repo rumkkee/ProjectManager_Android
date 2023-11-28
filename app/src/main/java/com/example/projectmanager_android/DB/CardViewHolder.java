@@ -18,6 +18,8 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
     public CardViewHolder(@NonNull View itemView) {
         super(itemView);
          cardTitleTextView = itemView.findViewById(R.id.recyclerView_Card);
+
+
     }
 
     public void bind(int cardId, String cardName){
@@ -32,6 +34,7 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
         //  (For now, the recyclerView for boards will suffice.)
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_card, parent, false);
+
         return new CardViewHolder(view);
     }
 

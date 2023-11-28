@@ -31,6 +31,7 @@ public class BoardActivity extends AppCompatActivity {
 
     CardListAdderFragment mCardListAdderFragment;
     CardAdderFragment mCardAdderFragment;
+    CardExpandedFragment mCardExpandedFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +114,14 @@ public class BoardActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .add(android.R.id.content, mCardAdderFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void showCardExpandedFragment(){
+        mCardExpandedFragment = CardExpandedFragment.newInstance("title", "desc");
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, mCardExpandedFragment)
                 .addToBackStack(null)
                 .commit();
     }
