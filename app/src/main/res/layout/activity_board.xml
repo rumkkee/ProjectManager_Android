@@ -44,32 +44,30 @@
             />
     </LinearLayout>
 
-    <HorizontalScrollView
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxHeight="680dp"
-        android:minHeight="680dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/BoardActivity_HeaderLayout"
-        android:fillViewport="true"
         >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            >
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/boardActivity_recyclerView_cardLists"
+                android:id="@+id/boardActivity_recyclerView_cards"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/recyclerview_card_list"
+                tools:listitem="@layout/recyclerview_card"
                 />
 
             <LinearLayout
@@ -77,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:nestedScrollingEnabled="true"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 >
 
                 <LinearLayout
@@ -112,6 +110,6 @@
 
         </LinearLayout>
 
-    </HorizontalScrollView>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

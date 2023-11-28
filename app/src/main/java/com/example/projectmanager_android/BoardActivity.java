@@ -59,11 +59,11 @@ public class BoardActivity extends AppCompatActivity {
 //        });
 
         // Card observer setup
-//        RecyclerView recyclerView_cards = recyclerView_cardLists.findViewById(R.id.);
+//        RecyclerView recyclerView_cards = findViewById(R.id.recyclerView_Cards);
 //        CardAdapter cardAdapter = new CardAdapter(new CardAdapter.CardDiff());
 //        recyclerView_cards.setAdapter(cardAdapter);
 //        mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
-//        mCardViewModel.getAllCards().observe(this, cards -> {
+//        mCardViewModel.getCardsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cards -> {
 //            cardAdapter.submitList(cards);
 //        });
 
