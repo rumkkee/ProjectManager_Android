@@ -9,6 +9,7 @@ import java.sql.Date;
 public class Card {
     @PrimaryKey(autoGenerate = true)
     private int mCardId;
+    private int mBoardId;
     private int mCardListId;
     private int mUserId;
 
@@ -21,6 +22,7 @@ public class Card {
         return
                 "Card # " + mCardId + "\n" +
                 "Title: " + mTitle + "\n" +
+                "Board # " + mBoardId + "\n" +
                 "CardList # " + mCardListId + "\n" +
                 "Position In List: " + mPositionInList + "\n" +
                 "User # " + mUserId + "\n" +
@@ -34,6 +36,10 @@ public class Card {
     public void setCardId(int cardId) {
         mCardId = cardId;
     }
+
+    public int getBoardId() {return mBoardId;}
+
+    public void setBoardId(int boardId) {mBoardId = boardId;}
 
     public int getCardListId() {
         return mCardListId;

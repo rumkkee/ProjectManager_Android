@@ -29,9 +29,6 @@ public class BoardViewHolder extends RecyclerView.ViewHolder {
                 System.out.println("Board Item # " + position + " Clicked!");
                 Intent intent = BoardActivity.getIntent(v.getContext());
                 Context context = v.getContext();
-                // TODO: Create a SharedPrefs value to store the currentBoardId.
-                //    A value of -1 could mean that no board is currently open.
-                //TODO: store this.boardId in SharedPrefs.
                 SharedPreferencesHelper.setCurrentBoardId(boardId);
                 context.startActivity(intent);
             }

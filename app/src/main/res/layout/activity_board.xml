@@ -44,30 +44,30 @@
             />
     </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxHeight="680dp"
-        android:minHeight="680dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/BoardActivity_HeaderLayout">
+        app:layout_constraintTop_toBottomOf="@id/BoardActivity_HeaderLayout"
+        >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            >
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/boardActivity_recyclerView_cardLists"
+                android:id="@+id/boardActivity_recyclerView_cards"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/recyclerview_card_list"
+                tools:listitem="@layout/recyclerview_card"
                 />
 
             <LinearLayout
@@ -85,11 +85,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/boardActivity_AddListClickableText"
+                        android:id="@+id/boardActivity_AddCardClickableText"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Add List"
+                        android:text="Add Card"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -101,6 +101,7 @@
                         android:paddingBottom="4dp">
 
                         <androidx.fragment.app.FragmentContainerView
+                            android:id="@+id/boardActivity_CardAdder"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             tools:layout="@layout/fragment_item_adder" />
@@ -110,6 +111,6 @@
 
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

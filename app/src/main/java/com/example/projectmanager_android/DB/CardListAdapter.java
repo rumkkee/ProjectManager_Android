@@ -3,20 +3,25 @@ package com.example.projectmanager_android.DB;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-public class CardListAdapter extends ListAdapter<CardList, CardListViewHolder> {
+import java.util.List;
 
+public class CardListAdapter extends ListAdapter<CardList, CardListViewHolder> {
+    private LiveData<List<Card>> mCardData;
+    private CardViewModel mCardViewModel;
 
     public CardListAdapter(@NonNull DiffUtil.ItemCallback<CardList> diffCallback) {
         super(diffCallback);
+        //mCardData = cardData;
     }
 
     @NonNull
     @Override
     public CardListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return CardListViewHolder.create(parent);
+        return CardListViewHolder.create(parent, mCardData);
     }
 
     @Override

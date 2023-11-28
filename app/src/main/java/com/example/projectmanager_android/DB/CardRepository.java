@@ -20,6 +20,8 @@ public class CardRepository {
 
     public LiveData<List<Card>> getCardsByUserId(int userId){return mCardDAO.getCardsByUserId(userId);}
 
+    public LiveData<List<Card>> getCardsByBoardId(int boardId){return mCardDAO.getCardsByBoardId(boardId);}
+
     public LiveData<List<Card>> getCardsByCardListId(int cardListId){return mCardDAO.getCardsByCardListId(cardListId);}
 
     void insert(Card card){
