@@ -19,12 +19,9 @@ import com.example.projectmanager_android.DB.AppDataBase;
  */
 public class CardDescriptionEditorFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String CARD_DESC_PARAM = "cardDesc";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mCardDescParam;
     private CardExpandedFragment mCardExpandedFragment;
 
@@ -86,8 +83,6 @@ public class CardDescriptionEditorFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(cardDescChanged()){
-                    // TODO: Signal the CardExpandedFragment to set this card's description to what is currently contained in this mCardDescEditText.
-                    // TODO: If the above doesn't adjust the cardDesc in the CardExpandedFragment, update it manually
                     mCardExpandedFragment.saveCardDesc(mCardDescEditText.getEditableText().toString());
                     removeFragment();
                 }

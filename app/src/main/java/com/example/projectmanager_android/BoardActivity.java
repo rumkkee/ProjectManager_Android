@@ -119,7 +119,7 @@ public class BoardActivity extends AppCompatActivity implements CardDisplayer {
     @Override
     public void displayCardExpandedFragment(int cardId) {
         Card card = AppDataBase.getInstance(this).CardDAO().getCardByCardId(cardId);
-        mCardExpandedFragment = CardExpandedFragment.newInstance(card.getTitle(), card.getDescription());
+        mCardExpandedFragment = CardExpandedFragment.newInstance(card.getTitle(), card.getDescription(), card);
         getSupportFragmentManager().beginTransaction()
                 .add(android.R.id.content, mCardExpandedFragment)
                 .addToBackStack(null)

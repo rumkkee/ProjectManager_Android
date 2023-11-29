@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.projectmanager_android.DB.AppDataBase;
 import com.example.projectmanager_android.DB.Card;
 
 /**
@@ -45,12 +46,13 @@ public class CardExpandedFragment extends Fragment {
      * @param cardDesc Parameter 2.
      * @return A new instance of fragment CardExpandedFragment.
      */
-    public static CardExpandedFragment newInstance(String cardTitle, String cardDesc) {
+    public static CardExpandedFragment newInstance(String cardTitle, String cardDesc, Card card) {
         CardExpandedFragment fragment = new CardExpandedFragment();
         Bundle args = new Bundle();
         args.putString(CARD_TITLE_PARAM, cardTitle);
         args.putString(CARD_DESC_PARAM, cardDesc);
         fragment.setArguments(args);
+        fragment.setCard(card);
         return fragment;
     }
 
@@ -108,10 +110,15 @@ public class CardExpandedFragment extends Fragment {
                 .commit();
     }
 
-    public void saveCardDesc(String newCardDesc){
-        // TODO: Save the cardDesc to the current card.
+    private void setCard(Card card){
+        mCard = card;
+    }
 
-        // TODO: Update the currently displayed CardDesc
+    public void saveCardDesc(String newCardDesc){
+        // Updating the cardDesc of the current card.
+        mCard.setDescription(newCardDesc);
+        AppDataBase.getInstance(getContext()).CardDAO().update(mCard);
+        // Updating the currently displayed cardDesc
         mCardDescription.setText(newCardDesc);
     }
 }
