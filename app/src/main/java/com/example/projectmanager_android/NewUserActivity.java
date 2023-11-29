@@ -83,7 +83,16 @@ public class NewUserActivity extends AppCompatActivity {
     }
 
     private boolean isValidPassword(){
-        return true;
+        String passwordInput = mPasswordText.getEditableText().toString();
+        String passwordReEnteredInput = mReEnteredPasswordText.getEditableText().toString();
+        if(!passwordInput.isEmpty()){
+            if(!passwordReEnteredInput.isEmpty()){
+                if(passwordReEnteredInput.equals(passwordInput)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static Intent getIntent(Context context){
