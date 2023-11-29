@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.projectmanager_android.DB.Card;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CardExpandedFragment#newInstance} factory method to
@@ -28,6 +30,8 @@ public class CardExpandedFragment extends Fragment {
 
     private ImageButton mExitFragmentButton;
     private ImageButton mOptionsButton;
+
+    private Card mCard;
 
     public CardExpandedFragment() {
         // Required empty public constructor
@@ -97,10 +101,17 @@ public class CardExpandedFragment extends Fragment {
     }
 
     private void openCardDescription(){
-        CardDescriptionEditorFragment cardDescriptionEditorFragment = CardDescriptionEditorFragment.newInstance(mCardDescParam);
+        CardDescriptionEditorFragment cardDescriptionEditorFragment = CardDescriptionEditorFragment.newInstance(mCardDescParam, this);
         getParentFragmentManager().beginTransaction()
                 .add(android.R.id.content, cardDescriptionEditorFragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    public void saveCardDesc(String newCardDesc){
+        // TODO: Save the cardDesc to the current card.
+
+        // TODO: Update the currently displayed CardDesc
+        mCardDescription.setText(newCardDesc);
     }
 }

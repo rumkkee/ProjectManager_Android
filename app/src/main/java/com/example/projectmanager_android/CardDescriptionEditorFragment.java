@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.projectmanager_android.DB.AppDataBase;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CardDescriptionEditorFragment#newInstance} factory method to
@@ -24,7 +26,7 @@ public class CardDescriptionEditorFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mCardDescParam;
-    private String mParam2;
+    private CardExpandedFragment mCardExpandedFragment;
 
 
     private TextView mCancelButton;
@@ -43,11 +45,12 @@ public class CardDescriptionEditorFragment extends Fragment {
      * @return A new instance of fragment CardDescriptionEditorFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CardDescriptionEditorFragment newInstance(String cardDesc) {
+    public static CardDescriptionEditorFragment newInstance(String cardDesc, CardExpandedFragment cardExpandedFragment) {
         CardDescriptionEditorFragment fragment = new CardDescriptionEditorFragment();
         Bundle args = new Bundle();
         args.putString(CARD_DESC_PARAM, cardDesc);
         fragment.setArguments(args);
+        fragment.setCardExpandedFragment(cardExpandedFragment);
         return fragment;
     }
 
@@ -56,7 +59,6 @@ public class CardDescriptionEditorFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mCardDescParam = getArguments().getString(CARD_DESC_PARAM);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -85,9 +87,8 @@ public class CardDescriptionEditorFragment extends Fragment {
             public void onClick(View v) {
                 if(cardDescChanged()){
                     // TODO: Signal the CardExpandedFragment to set this card's description to what is currently contained in this mCardDescEditText.
-
                     // TODO: If the above doesn't adjust the cardDesc in the CardExpandedFragment, update it manually
-
+                    mCardExpandedFragment.saveCardDesc(mCardDescEditText.getEditableText().toString());
                     removeFragment();
                 }
             }
@@ -98,6 +99,10 @@ public class CardDescriptionEditorFragment extends Fragment {
 
     private void removeFragment(){
         getParentFragmentManager().beginTransaction().remove(CardDescriptionEditorFragment.this).commit();
+    }
+
+    private void setCardExpandedFragment(CardExpandedFragment cardExpandedFragment){
+        mCardExpandedFragment = cardExpandedFragment;
     }
 
     private boolean cardDescChanged(){
