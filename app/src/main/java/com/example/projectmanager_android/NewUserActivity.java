@@ -17,9 +17,9 @@ public class NewUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
-        mEditText = findViewById(R.id.edit_user);
+        mEditText = findViewById(R.id.newUserActivity_username_text);
 
-        final Button saveButton = findViewById(R.id.button_save);
+        final Button saveButton = findViewById(R.id.newUserActivity_createAccount_button);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -28,4 +28,6 @@
     <string name="card_description_fragment_header">Description</string>
     <string name="done_text">Done</string>
     <string name="cancel_text">Cancel</string>
+    <string name="re_enter_password_hint">re-enter password</string>
+    <string name="create_account_text">Create Account</string>
 </resources>
