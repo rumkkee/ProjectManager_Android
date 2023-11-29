@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.projectmanager_android.DB.AppDataBase;
+import com.example.projectmanager_android.DB.Card;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CardExpandedFragment#newInstance} factory method to
@@ -17,12 +20,9 @@ import android.widget.TextView;
  */
 public class CardExpandedFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String CARD_TITLE_PARAM = "cardTitle";
     private static final String CARD_DESC_PARAM = "cardDesc";
 
-    // TODO: Rename and change types of parameters
     private String mCardTitleParam;
     private String mCardDescParam;
 
@@ -31,6 +31,8 @@ public class CardExpandedFragment extends Fragment {
 
     private ImageButton mExitFragmentButton;
     private ImageButton mOptionsButton;
+
+    private Card mCard;
 
     public CardExpandedFragment() {
         // Required empty public constructor
@@ -44,13 +46,13 @@ public class CardExpandedFragment extends Fragment {
      * @param cardDesc Parameter 2.
      * @return A new instance of fragment CardExpandedFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static CardExpandedFragment newInstance(String cardTitle, String cardDesc) {
+    public static CardExpandedFragment newInstance(String cardTitle, String cardDesc, Card card) {
         CardExpandedFragment fragment = new CardExpandedFragment();
         Bundle args = new Bundle();
         args.putString(CARD_TITLE_PARAM, cardTitle);
         args.putString(CARD_DESC_PARAM, cardDesc);
         fragment.setArguments(args);
+        fragment.setCard(card);
         return fragment;
     }
 
@@ -86,10 +88,37 @@ public class CardExpandedFragment extends Fragment {
             }
         });
 
+        mCardDescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCardDescription();
+            }
+        });
+
         return view;
     }
 
     private void removeFragment(){
         getParentFragmentManager().beginTransaction().remove(CardExpandedFragment.this).commit();
+    }
+
+    private void openCardDescription(){
+        CardDescriptionEditorFragment cardDescriptionEditorFragment = CardDescriptionEditorFragment.newInstance(mCardDescParam, this);
+        getParentFragmentManager().beginTransaction()
+                .add(android.R.id.content, cardDescriptionEditorFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    private void setCard(Card card){
+        mCard = card;
+    }
+
+    public void saveCardDesc(String newCardDesc){
+        // Updating the cardDesc of the current card.
+        mCard.setDescription(newCardDesc);
+        AppDataBase.getInstance(getContext()).CardDAO().update(mCard);
+        // Updating the currently displayed cardDesc
+        mCardDescription.setText(newCardDesc);
     }
 }

@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     android:background="#1e1e1e"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".CardExpandedFragment">
+    tools:context=".CardExpandedFragment"
+    android:clickable="true"
+    android:longClickable="true"
+    >
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -51,18 +54,21 @@
             android:id="@+id/cardFragment_titleLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp"
-            android:background="#2e2e2e"
+            android:paddingVertical="4dp"
+
             >
             <TextView
                 android:id="@+id/cardFragment_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Card Title Placeholder"
                 android:textColor="#cecece"
                 android:textStyle="bold"
                 android:textSize="22sp"
+
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="10dp"
+                android:background="#2e2e2e"
                 />
         </LinearLayout>
 
@@ -70,18 +76,20 @@
             android:id="@+id/cardFragment_descriptionLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp"
-            android:background="#2e2e2e"
+            android:paddingVertical="4dp"
             app:layout_constraintTop_toBottomOf="@+id/cardFragment_title">
 
             <TextView
                 android:id="@+id/cardFragment_descriptionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Card Description Placeholder. Card Description Placeholder. Card Description Placeholder. Card Description Placeholder. Card Description Placeholder. Card Description Placeholder. Card Description Placeholder. Card Description Placeholder."
+                android:hint="Tap to add a description"
+                android:textColorHint="#cecece"
                 android:textColor="#cecece"
-                android:textSize="16sp"
+                android:textSize="18sp"
+                android:background="#2e2e2e"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="10dp"
                 />
         </LinearLayout>
 
