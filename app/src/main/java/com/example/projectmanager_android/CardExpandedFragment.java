@@ -23,8 +23,8 @@ public class CardExpandedFragment extends Fragment {
     private static final String CARD_DESC_PARAM = "cardDesc";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String mCardTitleParam;
+    private String mCardDescParam;
 
     private TextView mCardTitle;
     private TextView mCardDescription;
@@ -58,8 +58,8 @@ public class CardExpandedFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(CARD_TITLE_PARAM);
-            mParam2 = getArguments().getString(CARD_DESC_PARAM);
+            mCardTitleParam = getArguments().getString(CARD_TITLE_PARAM);
+            mCardDescParam = getArguments().getString(CARD_DESC_PARAM);
         }
     }
 
@@ -75,6 +75,9 @@ public class CardExpandedFragment extends Fragment {
 
         mExitFragmentButton = view.findViewById(R.id.cardFragment_exitButton);
         mOptionsButton = view.findViewById(R.id.cardFragment_toolbarButton);
+
+        mCardTitle.setText(mCardTitleParam);
+        mCardDescription.setText(mCardDescParam);
 
         mExitFragmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
