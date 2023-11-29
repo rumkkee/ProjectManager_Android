@@ -24,4 +24,6 @@
     <string name="boardActivity_boardNamePlaceholderText">Board Name</string>
     <string name="card_list_name_placeholder">Card List Name</string>
     <string name="CardList_addCard_text">+ Add Card</string>
+    <string name="start_of_your_card_description">Start of your card description...</string>
+    <string name="card_description_fragment_header">Description</string>
 </resources>
