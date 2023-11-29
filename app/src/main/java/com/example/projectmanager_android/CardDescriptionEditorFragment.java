@@ -28,6 +28,7 @@ public class CardDescriptionEditorFragment extends Fragment {
 
 
     private TextView mCancelButton;
+    private TextView mDoneButton;
     private EditText mCardDescEditText;
 
     public CardDescriptionEditorFragment() {
@@ -66,6 +67,7 @@ public class CardDescriptionEditorFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_card_description_editor, container, false);
 
         mCancelButton = view.findViewById(R.id.cardDescFragment_cancelButton);
+        mDoneButton = view.findViewById(R.id.cardDescFragment_DoneButton);
         mCardDescEditText = view.findViewById(R.id.cardDescFragment_description_EditText);
 
         mCardDescEditText.setText(mCardDescParam);
@@ -78,6 +80,19 @@ public class CardDescriptionEditorFragment extends Fragment {
             }
         });
 
+        mDoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cardDescChanged()){
+                    // TODO: Signal the CardExpandedFragment to set this card's description to what is currently contained in this mCardDescEditText.
+
+                    // TODO: If the above doesn't adjust the cardDesc in the CardExpandedFragment, update it manually
+
+                    removeFragment();
+                }
+            }
+        });
+
         return view;
     }
 
@@ -85,4 +100,7 @@ public class CardDescriptionEditorFragment extends Fragment {
         getParentFragmentManager().beginTransaction().remove(CardDescriptionEditorFragment.this).commit();
     }
 
+    private boolean cardDescChanged(){
+        return !mCardDescEditText.getEditableText().toString().equals(mCardDescParam);
+    }
 }
