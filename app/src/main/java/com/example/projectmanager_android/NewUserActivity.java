@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projectmanager_android.DB.AppDataBase;
@@ -25,6 +26,9 @@ public class NewUserActivity extends AppCompatActivity {
     private EditText mReEnteredPasswordText;
     private Button mCreateAccountButton;
 
+    private TextView mUserTakenAlertText;
+    private TextView mPasswordMismatchAlertText;
+
     List<User> mAllUsers;
 
     @Override
@@ -40,13 +44,14 @@ public class NewUserActivity extends AppCompatActivity {
         mReEnteredPasswordText = findViewById(R.id.newUserActivity_reEnteredPassword_text);
         mCreateAccountButton = findViewById(R.id.newUserActivity_createAccount_button);
 
+        mUserTakenAlertText = findViewById(R.id.newUserActivity_usernameTaken_alertText);
+        mPasswordMismatchAlertText = findViewById(R.id.newUserActivity_passwordMismatch_alertText);
 
 
         mExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = MainActivity.getIntent(getApplicationContext());
-                startActivity(intent);
+                startMainActivity();
             }
         });
 
@@ -55,6 +60,7 @@ public class NewUserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isValidCredentials()){
                     createUser();
+                    startMainActivity();
                 }
             }
         });
@@ -75,10 +81,12 @@ public class NewUserActivity extends AppCompatActivity {
             // Compares the username for availability by comparing it to each existing User's username
             for (User user : mAllUsers){
                 if(usernameInput.equals(user.getUsername())){
+                    mUserTakenAlertText.setVisibility(View.VISIBLE);
                     return false;
                 }
             }
         }
+        mUserTakenAlertText.setVisibility(View.GONE);
         return true;
     }
 
@@ -88,8 +96,10 @@ public class NewUserActivity extends AppCompatActivity {
         if(!passwordInput.isEmpty()){
             if(!passwordReEnteredInput.isEmpty()){
                 if(passwordReEnteredInput.equals(passwordInput)){
+                    mPasswordMismatchAlertText.setVisibility(View.GONE);
                     return true;
                 }
+                mPasswordMismatchAlertText.setVisibility(View.VISIBLE);
             }
         }
         return false;
@@ -101,9 +111,16 @@ public class NewUserActivity extends AppCompatActivity {
         Toast.makeText(NewUserActivity.this, "Account Created! ", Toast.LENGTH_LONG).show();
     }
 
+    private void startMainActivity(){
+        Intent intent = MainActivity.getIntent(getApplicationContext());
+        startActivity(intent);
+    }
+
     public static Intent getIntent(Context context){
         Intent intent = new Intent(context, NewUserActivity.class);
         return intent;
     }
+
+
 
 }
