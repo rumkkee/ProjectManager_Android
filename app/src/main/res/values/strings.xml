@@ -30,4 +30,6 @@
     <string name="cancel_text">Cancel</string>
     <string name="re_enter_password_hint">re-enter password</string>
     <string name="create_account_text">Create Account</string>
+    <string name="username_unavailable_alertText">*Username unavailable</string>
+    <string name="passwordMismatch_alertText">*Re-entered password doesn\'t match password</string>
 </resources>

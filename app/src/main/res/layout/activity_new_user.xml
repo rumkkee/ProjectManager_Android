@@ -36,17 +36,34 @@
         app:layout_constraintBottom_toBottomOf="parent"
         >
 
-        <EditText
-            android:id="@+id/newUserActivity_username_text"
+        <LinearLayout
+            android:id="@+id/newUserActivity_username_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/min_height"
-            android:fontFamily="sans-serif-light"
-            android:hint="@string/hint_enterYourUsername"
-            android:inputType="textAutoComplete"
+            android:orientation="vertical"
+
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            android:textSize="18sp" />
+            >
+            <EditText
+                android:id="@+id/newUserActivity_username_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_height"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/hint_enterYourUsername"
+                android:inputType="textAutoComplete"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/newUserActivity_usernameTaken_alertText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/username_unavailable_alertText"
+                android:textColor="#880000"
+                android:visibility="gone"
+                tools:visibility="visible"
+                />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/newUserActivity_password_text"
@@ -59,16 +76,34 @@
             android:layout_marginHorizontal="16dp"
             android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/newUserActivity_reEnteredPassword_text"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/min_height"
-            android:fontFamily="sans-serif-light"
-            android:hint="@string/re_enter_password_hint"
-            android:inputType="textPassword"
-            android:layout_marginHorizontal="16dp"
-            android:textSize="18sp" />
+            android:orientation="vertical"
+            android:layout_marginHorizontal="16dp">
+
+            <EditText
+                android:id="@+id/newUserActivity_reEnteredPassword_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_height"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/re_enter_password_hint"
+                android:inputType="textPassword"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/newUserActivity_passwordMismatch_alertText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/passwordMismatch_alertText"
+                android:textColor="#880000"
+                android:visibility="gone"
+                tools:visibility="visible"
+                />
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/newUserActivity_createAccount_button"
