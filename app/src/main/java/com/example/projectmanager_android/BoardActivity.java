@@ -13,12 +13,13 @@ import android.widget.TextView;
 
 import com.example.projectmanager_android.DB.AppDataBase;
 import com.example.projectmanager_android.DB.Board;
+import com.example.projectmanager_android.DB.Card;
 import com.example.projectmanager_android.DB.CardAdapter;
 import com.example.projectmanager_android.DB.CardListViewModel;
 import com.example.projectmanager_android.DB.CardViewModel;
 import com.example.projectmanager_android.databinding.ActivityBoardBinding;
 
-public class BoardActivity extends AppCompatActivity {
+public class BoardActivity extends AppCompatActivity implements CardDisplayer {
 
     ActivityBoardBinding mActivityBoardBinding;
     ImageButton mExitButton;
@@ -31,6 +32,7 @@ public class BoardActivity extends AppCompatActivity {
 
     CardListAdderFragment mCardListAdderFragment;
     CardAdderFragment mCardAdderFragment;
+    CardExpandedFragment mCardExpandedFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class BoardActivity extends AppCompatActivity {
 
         // Card observer setup
         RecyclerView recyclerView_cards = findViewById(R.id.boardActivity_recyclerView_cards);
-        CardAdapter cardAdapter = new CardAdapter(new CardAdapter.CardDiff());
+        CardAdapter cardAdapter = new CardAdapter(new CardAdapter.CardDiff(), this);
         recyclerView_cards.setAdapter(cardAdapter);
         mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
         mCardViewModel.getCardsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cards -> {
@@ -82,9 +84,6 @@ public class BoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 System.out.println("Is CardListAdder Open? : " + CardListAdderFragment.isOpen());
-//                if(!CardListAdderFragment.isOpen()){
-//                    showCardListAdderFragment();
-//                }
                 if(!CardAdderFragment.isOpen()){
                     showCardAdderFragment();
                 }
@@ -117,4 +116,13 @@ public class BoardActivity extends AppCompatActivity {
                 .commit();
     }
 
+    @Override
+    public void displayCardExpandedFragment(int cardId) {
+        Card card = AppDataBase.getInstance(this).CardDAO().getCardByCardId(cardId);
+        mCardExpandedFragment = CardExpandedFragment.newInstance(card.getTitle(), card.getDescription());
+        getSupportFragmentManager().beginTransaction()
+                .add(android.R.id.content, mCardExpandedFragment)
+                .addToBackStack(null)
+                .commit();
+    }
 }

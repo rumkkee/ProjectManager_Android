@@ -6,9 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import com.example.projectmanager_android.CardDisplayer;
+
 public class CardAdapter extends ListAdapter<Card, CardViewHolder> {
-    public CardAdapter(@NonNull DiffUtil.ItemCallback<Card> diffCallback) {
+    private CardDisplayer mCardDisplayer;
+
+    public CardAdapter(@NonNull DiffUtil.ItemCallback<Card> diffCallback, CardDisplayer cardDisplayer) {
         super(diffCallback);
+        mCardDisplayer = cardDisplayer;
     }
 
     @NonNull
@@ -19,8 +24,8 @@ public class CardAdapter extends ListAdapter<Card, CardViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-        Card currentCardList = getItem(position);
-        holder.bind(currentCardList.getCardId(), currentCardList.getTitle());
+        Card currentCard = getItem(position);
+        holder.bind(currentCard.getCardId(), currentCard.getTitle(), mCardDisplayer);
     }
 
     public static class CardDiff extends DiffUtil.ItemCallback<Card>{
