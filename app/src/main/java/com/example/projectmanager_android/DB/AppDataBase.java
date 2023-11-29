@@ -82,9 +82,18 @@ public abstract class AppDataBase extends RoomDatabase {
                 cardList1 = cardListDAO.getListByListId(1);
 
                 CardDAO cardDAO = instance.CardDAO();
-                Card card1 = createCard("Rectangulata", board2, cardList1, board2.getUserId());
-                Card card2 = createCard("Cuneata", board2, cardList1, board2.getUserId());
-                Card card3 = createCard("Venustum", board2, cardList1, board2.getUserId());
+                Card card1 = createCard("Vetulicolia", board2, cardList1, board2.getUserId());
+                card1.setDescription("It's possible that the shrimp-like anomolocaris ate soft fish of the genus vetulicolia.");
+                Card card2 = createCard("Trilobites", board2, cardList1, board2.getUserId());
+                card2.setDescription(
+                        "The anomolocaris likely didn't eat trilobites, " +
+                        "as their appendages weren't strong enough to break through their trilobite's shell.\n" +
+                        "It's possible the anomolocaris ate them during the trilobite's molting period.");
+                Card card3 = createCard("Hallucigenia", board2, cardList1, board2.getUserId());
+                card3.setDescription("" +
+                        "Though the hallucigenia weren't armored, they had spikes along their back and could curl up if they felt in danger. " +
+                        "It's likely that the anomolcaris were able to eat hallucigenia.\n\n" +
+                        "They were indeed a tribute to the anomolacaris (*queues 'Bring Me to Life' by Evanescence*)");
                 cardDAO.insert(card1, card2, card3);
 
                 System.out.println("End of insertions!");
