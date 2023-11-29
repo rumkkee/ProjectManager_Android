@@ -10,7 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.projectmanager_android.DB.UserViewModel;
+import com.example.projectmanager_android.DB.AppDataBase;
+import com.example.projectmanager_android.DB.User;
+
+import java.util.List;
 
 public class NewUserActivity extends AppCompatActivity {
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
@@ -21,11 +24,14 @@ public class NewUserActivity extends AppCompatActivity {
     private EditText mReEnteredPasswordText;
     private Button mCreateAccountButton;
 
+    List<User> mAllUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
+
+        mAllUsers = AppDataBase.getInstance(getApplicationContext()).UserDAO().getAllUsers();
 
         mExitButton = findViewById(R.id.newUserActivity_exit_button);
         mUsernameText = findViewById(R.id.newUserActivity_username_text);
@@ -47,7 +53,7 @@ public class NewUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: Check if the fields have been completed
-                if(validCredentials()){
+                if(isValidCredentials()){
 
                 }
             }
@@ -55,24 +61,28 @@ public class NewUserActivity extends AppCompatActivity {
 
     }
 
-    private boolean validCredentials(){
-        // TODO: Check if the username has been inputted.
-        //      If true, check if it is already taken.
+    private boolean isValidCredentials(){
+        return isValidUsername() && isValidPassword();
+    }
 
+    private boolean isValidUsername(){
         String usernameInput = mUsernameText.getEditableText().toString();
         // Checking if username is empty
         if(usernameInput.isEmpty()){
             return false;
-
-            // TODO: Compare the username for availability by comparing it to each existing User's username
-
         }
+        else{
+            // Compares the username for availability by comparing it to each existing User's username
+            for (User user : mAllUsers){
+                if(usernameInput.equals(user.getUsername())){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
-
-
-        // TODO: Check if the password has been inputted.
-        //      If true, check if the re-entered password matches the password.
-        //          If true, return true. Else, false.
+    private boolean isValidPassword(){
         return true;
     }
 
