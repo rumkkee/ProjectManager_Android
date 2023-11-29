@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.projectmanager_android.DB.AppDataBase;
 import com.example.projectmanager_android.DB.User;
@@ -52,9 +53,8 @@ public class NewUserActivity extends AppCompatActivity {
         mCreateAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Check if the fields have been completed
                 if(isValidCredentials()){
-
+                    createUser();
                 }
             }
         });
@@ -93,6 +93,12 @@ public class NewUserActivity extends AppCompatActivity {
             }
         }
         return false;
+    }
+
+    private void createUser(){
+        User user = new User(mUsernameText.getEditableText().toString(), mPasswordText.getEditableText().toString());
+        AppDataBase.getInstance(getApplicationContext()).UserDAO().insert(user);
+        Toast.makeText(NewUserActivity.this, "Account Created! ", Toast.LENGTH_LONG).show();
     }
 
     public static Intent getIntent(Context context){
