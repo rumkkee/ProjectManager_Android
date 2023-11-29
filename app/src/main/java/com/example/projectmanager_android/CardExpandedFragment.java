@@ -17,12 +17,9 @@ import android.widget.TextView;
  */
 public class CardExpandedFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String CARD_TITLE_PARAM = "cardTitle";
     private static final String CARD_DESC_PARAM = "cardDesc";
 
-    // TODO: Rename and change types of parameters
     private String mCardTitleParam;
     private String mCardDescParam;
 
@@ -44,7 +41,6 @@ public class CardExpandedFragment extends Fragment {
      * @param cardDesc Parameter 2.
      * @return A new instance of fragment CardExpandedFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static CardExpandedFragment newInstance(String cardTitle, String cardDesc) {
         CardExpandedFragment fragment = new CardExpandedFragment();
         Bundle args = new Bundle();
@@ -86,10 +82,25 @@ public class CardExpandedFragment extends Fragment {
             }
         });
 
+        mCardDescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCardDescription();
+            }
+        });
+
         return view;
     }
 
     private void removeFragment(){
         getParentFragmentManager().beginTransaction().remove(CardExpandedFragment.this).commit();
+    }
+
+    private void openCardDescription(){
+        CardDescriptionEditorFragment cardDescriptionEditorFragment = CardDescriptionEditorFragment.newInstance(mCardDescParam);
+        getParentFragmentManager().beginTransaction()
+                .add(android.R.id.content, cardDescriptionEditorFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

@@ -13,15 +13,17 @@
         android:id="@+id/cardDescFragment_headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/cardFragmentDesc_exitButton"
+        <TextView
+            android:id="@+id/cardDescFragment_cancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_close_24"
+            android:text="@string/cancel_text"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,16 +37,16 @@
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cardDescFragment_toolbarButton"
-            app:layout_constraintStart_toEndOf="@id/cardFragmentDesc_exitButton"
+            app:layout_constraintEnd_toStartOf="@+id/cardDescFragment_DoneButton"
+            app:layout_constraintStart_toEndOf="@id/cardDescFragment_cancelButton"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/cardDescFragment_toolbarButton"
+        <TextView
+            android:id="@+id/cardDescFragment_DoneButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#1e1e1e"
-            android:src="@drawable/baseline_more_horiz_24_white"
+            android:text="@string/done_text"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

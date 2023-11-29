@@ -26,4 +26,6 @@
     <string name="CardList_addCard_text">+ Add Card</string>
     <string name="start_of_your_card_description">Start of your card description...</string>
     <string name="card_description_fragment_header">Description</string>
+    <string name="done_text">Done</string>
+    <string name="cancel_text">Cancel</string>
 </resources>
