@@ -47,9 +47,14 @@
     <string name="done_text">Done</string>
     <string name="cancel_text">Cancel</string>
 
-    <!--Alerts-->
+    <!--Alerts: General-->
     <string name="emptyField_alertText">*Field is empty</string>
+    <string name="emptyUsernameField_alertText">*Username not provided</string>
     <string name="emptyPasswordField_alertText">*Password not provided</string>
+    <!--Alerts: Sign Up-->
     <string name="username_unavailable_alertText">*Username unavailable</string>
-    <string name="passwordMismatch_alertText">*Re-entered password doesn\'t match password</string>
+    <string name="passwordMismatch_alertText">*Does not match password</string>
+    <!--Alerts: Log In-->
+    <string name="username_doesNotExist_alertText">*Username does not exist</string>
+    <string name="password_incorrect_alertText">*Incorrect password</string>
 </resources>
