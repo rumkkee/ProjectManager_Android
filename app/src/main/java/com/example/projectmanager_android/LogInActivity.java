@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projectmanager_android.DB.AppDataBase;
@@ -22,10 +24,13 @@ public class LogInActivity extends AppCompatActivity {
 
     ActivityLogInBinding mLogInBinding;
 
-    Button mBackButton;
+    ImageButton mBackButton;
 
-    EditText mUsername;
-    EditText mPassword;
+    EditText mUsernameText;
+    EditText mPasswordText;
+
+    TextView mUsernameAlertText;
+    TextView mPasswordAlertText;
 
     Button mLogInButton;
 
@@ -45,9 +50,10 @@ public class LogInActivity extends AppCompatActivity {
         mLogInBinding = ActivityLogInBinding.inflate(getLayoutInflater());
         setContentView(mLogInBinding.getRoot());
 
-        mUsername = mLogInBinding.editTextEmail;
-        mPassword = mLogInBinding.editTextPassword;
-
+        mUsernameText = mLogInBinding.editTextUsername;
+        mPasswordText = mLogInBinding.editTextPassword;
+        mUsernameAlertText = mLogInBinding.alertTextUsername;
+        mPasswordAlertText = mLogInBinding.alertTextPassword;
         mBackButton = mLogInBinding.logInActivityBackButton;
         mLogInButton = mLogInBinding.logInButton;
 
@@ -68,34 +74,99 @@ public class LogInActivity extends AppCompatActivity {
         mLogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               logInRequest();
+               User user = findUserByCredentials();
+               if(user != null){
+                   logInUser(user);
+               }
             }
         });
     }
 
-    private void logInRequest(){
-        String username = mUsername.getText().toString();
-        String password = mPassword.getText().toString();
+    private boolean isUsernameInputFilled(){
+        String username = mUsernameText.getText().toString();
+        return !username.isEmpty();
+    }
 
-        User inputtedCredentials = new User(username, password);
+    private boolean isPasswordInputFilled(){
+        String password = mPasswordText.getEditableText().toString();
+        return !password.isEmpty();
+    }
 
-        for (User credentials: mUserCredentialsList) {
-            if(inputtedCredentials.getUsername().equals(credentials.getUsername())){
-                if(inputtedCredentials.getPassword().equals(credentials.getPassword())){
-                    // Credentials exist; Starts the landing activity for the user that has logged in
-                    System.out.println("Log in credentials match!");
-                    addUserToSharedPreferences(credentials);
-                    startLandingPageActivity();
-                }else{
-                    // Case where the user exists, but password is incorrect
-                    System.out.println("Password is incorrect!");
-                }
-            }else{
-                // Case where the username doesn't exist
-                System.out.println("Username doesn't exist!");
-            }
+    private User findUserByCredentials(){
+        boolean isUsernameInputted = isUsernameInputFilled();
+        boolean isPasswordInputted = isPasswordInputFilled();
+
+        boolean isUsernameFound = false;
+        boolean isPasswordFound = false;
+        User user = null;
+
+        if(!isUsernameInputted){
+            // Case: Username not inputted
+            mUsernameAlertText.setText(R.string.emptyUsernameField_alertText);
+            mUsernameAlertText.setVisibility(View.VISIBLE);
+            mPasswordAlertText.setVisibility(View.GONE);
+            return null;
+        }
+        else if(!isPasswordInputted){
+            // Case: Username inputted; password not inputted.
+            mPasswordAlertText.setText(R.string.emptyPasswordField_alertText);
+            mPasswordAlertText.setVisibility(View.VISIBLE);
+            mUsernameAlertText.setVisibility(View.GONE);
+            // Return statement left out intentionally.
+            // Still important to alert user if password is unavailable
         }
 
+        String username = mUsernameText.getText().toString();
+        String password = mPasswordText.getText().toString();
+
+        for (User existingUser: mUserCredentialsList) {
+            if(username.equals(existingUser.getUsername())){
+                if(password.equals(existingUser.getPassword())){
+                    // Case: input matches a User's credentials; Start the landing activity for the user that has logged in
+                    isUsernameFound = true;
+                    isPasswordFound = true;
+                    user = existingUser;
+                    break;
+                }else{
+                    // Case: Username exists, but password is incorrect
+                    isUsernameFound = true;
+                    isPasswordFound = false;
+                }
+            }else{
+                isUsernameFound = false;
+                isPasswordFound = false;
+            }
+
+        }
+
+        if(!isUsernameFound){
+            // Case: Username not found; password irrelevant
+            mUsernameAlertText.setText(R.string.username_doesNotExist_alertText);
+            mUsernameAlertText.setVisibility(View.VISIBLE);
+            mPasswordAlertText.setVisibility(View.GONE);
+        }
+        else{
+            if(!isPasswordFound){
+                // Case: Username found; password not matching.
+                System.out.println("User found; password incorrect");
+                mUsernameAlertText.setVisibility(View.GONE);
+                mPasswordAlertText.setText(R.string.password_incorrect_alertText);
+                mPasswordAlertText.setVisibility(View.VISIBLE);
+            }
+            else{
+                // Case: Username found; password does match.
+                System.out.println("User found; password found");
+                mUsernameAlertText.setVisibility(View.GONE);
+                mPasswordAlertText.setVisibility(View.GONE);
+                return user;
+            }
+        }
+        return null;
+    }
+
+    private void logInUser(User user){
+        addUserToSharedPreferences(user);
+        startLandingPageActivity();
     }
 
     private void startLandingPageActivity(){
