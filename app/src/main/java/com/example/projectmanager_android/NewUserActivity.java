@@ -70,14 +70,19 @@ public class NewUserActivity extends AppCompatActivity {
     }
 
     private boolean isValidCredentials(){
-        // This method is intentionally structured to check both the username and password,
-        // regardless if one already returned false.
+        // This method is intentionally structured to check each field, regardless if one already returned false.
         // This is so that all text fields can potentially display their alerts.
         boolean isValid = true;
         if(!isValidUsername()){
             isValid = false;
+            System.out.println("Failed Username check");
         }
         if(!isValidPassword()){
+            isValid = false;
+            System.out.println("Failed password check");
+        }
+        if(!isValidReEnteredPassword()){
+            System.out.println("Failed re-entered password check");
             isValid = false;
         }
         return isValid;
@@ -110,27 +115,54 @@ public class NewUserActivity extends AppCompatActivity {
     private boolean isValidPassword(){
         boolean isValid = true;
         String passwordInput = mPasswordText.getEditableText().toString();
-        String passwordReEnteredInput = mReEnteredPasswordText.getEditableText().toString();
+
         if(passwordInput.isEmpty()){
             mPasswordAlertText.setText(R.string.emptyField_alertText);
             mPasswordAlertText.setVisibility(View.VISIBLE);
             isValid = false;
         }
+        if(isValid){
+            mPasswordAlertText.setVisibility(View.GONE);
+        }
+        return isValid;
+    }
+
+    /**
+     * Determines if the reEnteredPassword field meets the sign-up criteria. <br><br>
+     * Under given circumstances, will display custom messages if:
+     * <li> this field is empty </li>
+     * <li> the password field is empty </li>
+     * <li> the two fields don't match. </li>
+     * @return a boolean isValid
+     */
+    private boolean isValidReEnteredPassword(){
+        boolean isValid = true;
+        String passwordReEnteredInput = mReEnteredPasswordText.getEditableText().toString();
+        String passwordInput = mPasswordText.getEditableText().toString();
+
         if(passwordReEnteredInput.isEmpty()){
             mReEnteredPasswordAlertText.setText(R.string.emptyField_alertText);
             mReEnteredPasswordAlertText.setVisibility(View.VISIBLE);
             isValid = false;
         }
-        // Will only check if the password and re-entered password are equal if both fields contain text.
-        if(isValid){
-            if(!passwordReEnteredInput.equals(passwordInput)){
-                mReEnteredPasswordAlertText.setText(R.string.emptyField_alertText);
+        else{
+            if(passwordInput.isEmpty()){
+                mReEnteredPasswordAlertText.setText(R.string.emptyPasswordField_alertText);
                 mReEnteredPasswordAlertText.setVisibility(View.VISIBLE);
                 isValid = false;
             }
             else{
-                mReEnteredPasswordAlertText.setVisibility(View.GONE);
+                // Will only compare this re-entered password field to the password field if both contain text.
+                if(!passwordReEnteredInput.equals(passwordInput)){
+                    mReEnteredPasswordAlertText.setText(R.string.passwordMismatch_alertText);
+                    mReEnteredPasswordAlertText.setVisibility(View.VISIBLE);
+                    isValid = false;
+                }
             }
+        }
+
+        if(isValid){
+            mReEnteredPasswordAlertText.setVisibility(View.GONE);
         }
         return isValid;
     }

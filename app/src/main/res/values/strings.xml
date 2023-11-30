@@ -49,6 +49,7 @@
 
     <!--Alerts-->
     <string name="emptyField_alertText">*Field is empty</string>
+    <string name="emptyPasswordField_alertText">*Password not provided</string>
     <string name="username_unavailable_alertText">*Username unavailable</string>
     <string name="passwordMismatch_alertText">*Re-entered password doesn\'t match password</string>
 </resources>
