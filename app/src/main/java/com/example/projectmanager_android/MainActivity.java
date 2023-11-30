@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding mActivityMainBinding;
     Button mLogInButton;
+    Button mSignUpButton;
 
     UserViewModel mUserViewModel;
 
@@ -33,11 +34,20 @@ public class MainActivity extends AppCompatActivity {
         mUserViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         mLogInButton = mActivityMainBinding.mainActivityLoginButton;
+        mSignUpButton = mActivityMainBinding.mainActivitySignUpButton;
 
         mLogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = LogInActivity.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
+        mSignUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = NewUserActivity.getIntent(getApplicationContext());
                 startActivity(intent);
             }
         });

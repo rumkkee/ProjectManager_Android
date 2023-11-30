@@ -1,31 +1,55 @@
 <resources>
     <string name="app_name">ProjectManager_Android</string>
     <string name="AppName">Project Manager App</string>
+
+    <!--Placeholders-->
+    <string name="userGreeting_placeholder">Hello, _username_</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--MainActivity-->
     <string name="logIn_Text">Log In</string>
     <string name="signUp_Text">Sign Up</string>
     <string name="backButton_text">X</string>
+
+    <!--LogIn / SignUp-->
     <string name="hint_enterYourUsername">enter your username</string>
     <string name="hint_enterYourPassword">enter your password</string>
+    <string name="re_enter_password_hint">re-enter password</string>
+    <string name="create_account_text">Create Account</string>
+
+    <!--Landing Page-->
     <string name="boards_header">Boards</string>
     <string name="logOut_text">Log Out</string>
-
-    <string name="LoggedInUser_prefs">loggedInUser_prefs</string>
     <string name="userGreeting">"Hello, "</string>
     <string name="adminButton_text">Admin</string>
+
+    <!--UserPrefs-->
+    <string name="LoggedInUser_prefs">loggedInUser_prefs</string>
     <string name="addBoard_symbol">+</string>
-    <string name="userGreeting_placeholder">Hello, _username_</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Board Setup-->
     <string name="boardSetup_header">Board</string>
     <string name="boardSetup_nameInput_hint">enter board name</string>
     <string name="boardSetupButton_text">Create Board</string>
     <string name="BoardSetup_Cancel_text">Cancel</string>
     <string name="button_save">Save</string>
+
+    <!--Board Activity-->
     <string name="boardActivity_boardNamePlaceholderText">Board Name</string>
     <string name="card_list_name_placeholder">Card List Name</string>
     <string name="CardList_addCard_text">+ Add Card</string>
+
+    <!--Card Info-->
     <string name="start_of_your_card_description">Start of your card description...</string>
     <string name="card_description_fragment_header">Description</string>
+
+    <!--General Form Use-->
     <string name="done_text">Done</string>
     <string name="cancel_text">Cancel</string>
+
+    <!--Alerts-->
+    <string name="emptyField_alertText">*Field is empty</string>
+    <string name="emptyPasswordField_alertText">*Password not provided</string>
+    <string name="username_unavailable_alertText">*Username unavailable</string>
+    <string name="passwordMismatch_alertText">*Re-entered password doesn\'t match password</string>
 </resources>
