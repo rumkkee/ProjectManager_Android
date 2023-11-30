@@ -26,8 +26,9 @@ public class NewUserActivity extends AppCompatActivity {
     private EditText mReEnteredPasswordText;
     private Button mCreateAccountButton;
 
-    private TextView mUserTakenAlertText;
-    private TextView mPasswordMismatchAlertText;
+    private TextView mUsernameAlertText;
+    private TextView mPasswordAlertText;
+    private TextView mReEnteredPasswordAlertText;
 
     List<User> mAllUsers;
 
@@ -44,8 +45,9 @@ public class NewUserActivity extends AppCompatActivity {
         mReEnteredPasswordText = findViewById(R.id.newUserActivity_reEnteredPassword_text);
         mCreateAccountButton = findViewById(R.id.newUserActivity_createAccount_button);
 
-        mUserTakenAlertText = findViewById(R.id.newUserActivity_usernameTaken_alertText);
-        mPasswordMismatchAlertText = findViewById(R.id.newUserActivity_passwordMismatch_alertText);
+        mUsernameAlertText = findViewById(R.id.newUserActivity_username_alertText);
+        mPasswordAlertText = findViewById(R.id.newUserActivity_password_alertText);
+        mReEnteredPasswordAlertText = findViewById(R.id.newUserActivity_reEnteredPassword_alertText);
 
 
         mExitButton.setOnClickListener(new View.OnClickListener() {
@@ -68,41 +70,69 @@ public class NewUserActivity extends AppCompatActivity {
     }
 
     private boolean isValidCredentials(){
-        return isValidUsername() && isValidPassword();
+        // This method is intentionally structured to check both the username and password,
+        // regardless if one already returned false.
+        // This is so that all text fields can potentially display their alerts.
+        boolean isValid = true;
+        if(!isValidUsername()){
+            isValid = false;
+        }
+        if(!isValidPassword()){
+            isValid = false;
+        }
+        return isValid;
     }
 
     private boolean isValidUsername(){
+        boolean isValid = true;
         String usernameInput = mUsernameText.getEditableText().toString();
-        // Checking if username is empty
         if(usernameInput.isEmpty()){
-            return false;
+            mUsernameAlertText.setText(R.string.emptyField_alertText);
+            mUsernameAlertText.setVisibility(View.VISIBLE);
+            isValid = false;
         }
         else{
             // Compares the username for availability by comparing it to each existing User's username
             for (User user : mAllUsers){
                 if(usernameInput.equals(user.getUsername())){
-                    mUserTakenAlertText.setVisibility(View.VISIBLE);
-                    return false;
+                    mUsernameAlertText.setText(R.string.username_unavailable_alertText);
+                    mUsernameAlertText.setVisibility(View.VISIBLE);
+                    isValid = false;
                 }
             }
         }
-        mUserTakenAlertText.setVisibility(View.GONE);
-        return true;
+        if(isValid){
+            mUsernameAlertText.setVisibility(View.GONE);
+        }
+        return isValid;
     }
 
     private boolean isValidPassword(){
+        boolean isValid = true;
         String passwordInput = mPasswordText.getEditableText().toString();
         String passwordReEnteredInput = mReEnteredPasswordText.getEditableText().toString();
-        if(!passwordInput.isEmpty()){
-            if(!passwordReEnteredInput.isEmpty()){
-                if(passwordReEnteredInput.equals(passwordInput)){
-                    mPasswordMismatchAlertText.setVisibility(View.GONE);
-                    return true;
-                }
-                mPasswordMismatchAlertText.setVisibility(View.VISIBLE);
+        if(passwordInput.isEmpty()){
+            mPasswordAlertText.setText(R.string.emptyField_alertText);
+            mPasswordAlertText.setVisibility(View.VISIBLE);
+            isValid = false;
+        }
+        if(passwordReEnteredInput.isEmpty()){
+            mReEnteredPasswordAlertText.setText(R.string.emptyField_alertText);
+            mReEnteredPasswordAlertText.setVisibility(View.VISIBLE);
+            isValid = false;
+        }
+        // Will only check if the password and re-entered password are equal if both fields contain text.
+        if(isValid){
+            if(!passwordReEnteredInput.equals(passwordInput)){
+                mReEnteredPasswordAlertText.setText(R.string.emptyField_alertText);
+                mReEnteredPasswordAlertText.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+            else{
+                mReEnteredPasswordAlertText.setVisibility(View.GONE);
             }
         }
-        return false;
+        return isValid;
     }
 
     private void createUser(){

@@ -55,7 +55,7 @@
                 android:inputType="textAutoComplete"
                 android:textSize="18sp" />
             <TextView
-                android:id="@+id/newUserActivity_usernameTaken_alertText"
+                android:id="@+id/newUserActivity_username_alertText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/username_unavailable_alertText"
@@ -65,16 +65,33 @@
                 />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/newUserActivity_password_text"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/min_height"
-            android:fontFamily="sans-serif-light"
-            android:hint="@string/hint_enterYourPassword"
-            android:inputType="textPassword"
-            android:layout_marginHorizontal="16dp"
-            android:textSize="18sp" />
+            android:orientation="vertical"
+            android:layout_marginHorizontal="16dp">
+
+            <EditText
+                android:id="@+id/newUserActivity_password_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_height"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/hint_enterYourPassword"
+                android:inputType="textPassword"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/newUserActivity_password_alertText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/emptyField_alertText"
+                android:textColor="#880000"
+                android:visibility="gone"
+                tools:visibility="visible"
+                />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,7 +110,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/newUserActivity_passwordMismatch_alertText"
+                android:id="@+id/newUserActivity_reEnteredPassword_alertText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/passwordMismatch_alertText"
