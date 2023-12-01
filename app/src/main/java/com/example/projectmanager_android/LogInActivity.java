@@ -38,14 +38,10 @@ public class LogInActivity extends AppCompatActivity {
 
     List<User> mUserCredentialsList;
 
-    SharedPreferences mSharedPreferences;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
-
 
         mLogInBinding = ActivityLogInBinding.inflate(getLayoutInflater());
         setContentView(mLogInBinding.getRoot());
@@ -56,8 +52,6 @@ public class LogInActivity extends AppCompatActivity {
         mPasswordAlertText = mLogInBinding.alertTextPassword;
         mBackButton = mLogInBinding.logInActivityBackButton;
         mLogInButton = mLogInBinding.logInButton;
-
-        mSharedPreferences = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
 
         mUserDAO = AppDataBase.getInstance(this).UserDAO();
 
@@ -176,7 +170,8 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void addUserToSharedPreferences(User user){
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        SharedPreferences sharedUserPrefs = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedUserPrefs.edit();
         editor.putInt(SharedPreferencesHelper.CURRENT_USER_ID_KEY, user.getUserId());
         editor.putString(SharedPreferencesHelper.CURRENT_USER_USERNAME_KEY, user.getUsername());
         editor.putBoolean(SharedPreferencesHelper.CURRENT_USER_IS_ADMIN_KEY, user.getIsAdmin());

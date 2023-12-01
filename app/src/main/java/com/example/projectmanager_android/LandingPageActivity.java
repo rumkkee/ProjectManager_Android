@@ -45,9 +45,6 @@ public class LandingPageActivity extends AppCompatActivity {
         mLogOutButton = mLandingPageBinding.LogOutButton;
         mUserGreeting = mLandingPageBinding.userGreeting;
 
-        SharedPreferences sharedPrefs = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
-        SharedPreferencesHelper.setUserPrefs(sharedPrefs);
-
         setUserGreeting();
         adminCheck();
 
