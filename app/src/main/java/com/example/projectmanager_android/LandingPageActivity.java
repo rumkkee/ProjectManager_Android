@@ -45,9 +45,6 @@ public class LandingPageActivity extends AppCompatActivity {
         mLogOutButton = mLandingPageBinding.LogOutButton;
         mUserGreeting = mLandingPageBinding.userGreeting;
 
-        SharedPreferences sharedPrefs = getSharedPreferences(String.valueOf(R.string.LoggedInUser_prefs), MODE_PRIVATE);
-        SharedPreferencesHelper.setUserPrefs(sharedPrefs);
-
         setUserGreeting();
         adminCheck();
 
@@ -71,6 +68,9 @@ public class LandingPageActivity extends AppCompatActivity {
         mLogOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Signals to the SharedPreferences that no user is logged in
+                SharedPreferencesHelper.setCurrentUserId(SharedPreferencesHelper.INVALID_ID);
+                // Starts Main Activity
                 Intent intent = MainActivity.getIntent(getApplicationContext());
                 startActivity(intent);
             }
