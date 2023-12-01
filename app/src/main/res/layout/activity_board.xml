@@ -5,6 +5,7 @@
     android:id="@+id/BoardActivity_Root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_1"
     tools:context=".BoardActivity">
 
     <LinearLayout
@@ -30,13 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="16dp"
-
             android:gravity="center_vertical"
-
             android:text="@string/boardActivity_boardNamePlaceholderText"
             android:textSize="20sp"
-
             android:textStyle="bold"
+            android:textColor="@color/white_2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/boardActivity_exitButton"
             app:layout_constraintTop_toTopOf="parent"
@@ -50,15 +49,13 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/BoardActivity_HeaderLayout"
-        >
+        app:layout_constraintTop_toBottomOf="@id/BoardActivity_HeaderLayout">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/boardActivity_recyclerView_cards"
@@ -66,21 +63,19 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/recyclerview_card"
-                />
+                tools:listitem="@layout/recyclerview_card" />
 
             <LinearLayout
                 android:id="@+id/boardActivity_AddListLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:nestedScrollingEnabled="true"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#CCCCCC"
+                    android:background="@color/black_2"
                     android:orientation="vertical">
 
                     <TextView
@@ -88,7 +83,8 @@
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Add Card"
+                        android:text="@string/add_card"
+                        android:textColor="@color/white_2"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 

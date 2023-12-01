@@ -3,4 +3,21 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="blue_1">#278aa9</color>
+    <color name="blue_2">#3aa6cd</color>
+    <color name="blue_3">#4bd2e7</color>
+    <color name="blue_4">#64e8f8</color>
+    <color name="blue_5">#96f6ff</color>
+
+    <color name="black_1">#1e1e1e</color>
+    <color name="black_2">#2e2e2e</color>
+    <color name="black_3">#3e3e3e</color>
+
+    <color name="white_2">#eeeeee</color>
+    <color name="white_3">#cecece</color>
+    <color name="white_4">#bebebe</color>
+    <color name="white_5">#aeaeae</color>
+
+    <color name="red_alert_bright">#880000</color>
+    <color name="red_alert_night">#FF7777</color>
 </resources>

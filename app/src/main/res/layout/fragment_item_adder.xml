@@ -10,17 +10,16 @@
     <LinearLayout
         android:id="@+id/itemAdder_layoutGroup"
         android:orientation="vertical"
-        android:background="#CCCCCC"
+        android:background="@color/black_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-<!--        android:visibility="gone"-->
-<!--        tools:visibility="visible"-->
-        >
         <EditText
             android:id="@+id/itemAdder_titleInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="title"
+            android:hint="@string/hint_title"
+            android:textColor="@color/white_2"
+            android:textColorHint="@color/white_3"
             />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,9 +29,10 @@
                 android:id="@+id/itemAdder_addButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add"
+                android:text="@string/add"
                 android:textStyle="bold"
                 android:textSize="16sp"
+                android:backgroundTint="@color/blue_1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
@@ -40,8 +40,9 @@
                 android:id="@+id/itemAdder_cancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancel"
+                android:text="@string/cancel_text"
                 android:textSize="16sp"
+                android:backgroundTint="@color/black_3"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 />
