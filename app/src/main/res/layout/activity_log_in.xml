@@ -62,7 +62,6 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white_2"
             android:textColorHint="@color/white_3"
-            android:backgroundTint="@color/blue_1"
             android:hint="@string/hint_enterYourUsername"
             />
 
@@ -82,7 +81,6 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white_2"
             android:textColorHint="@color/white_3"
-            android:backgroundTint="@color/blue_1"
             android:hint="@string/hint_enterYourPassword"
 
             app:layout_constraintEnd_toEndOf="parent"
