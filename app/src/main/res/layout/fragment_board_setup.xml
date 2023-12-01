@@ -1,74 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="360dp"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="160dp"
     tools:context=".BoardSetupFragment">
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:paddingBottom="10dp"
-        >
+        android:background="@color/black_2"
+        android:paddingBottom="10dp">
 
         <TextView
             android:id="@+id/BoardSetup_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingVertical="10dp"
             android:gravity="center_horizontal"
+            android:paddingVertical="10dp"
             android:text="@string/boardSetup_header"
 
+            android:textColor="@color/white_2"
             android:textSize="20sp"
             android:textStyle="bold"
-
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/BoardName_input"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
 
-            android:inputType="text"
             android:hint="@string/boardSetup_nameInput_hint"
+            android:inputType="text"
+            android:textColor="@color/white_2"
+            android:textColorHint="@color/white_3"
 
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/BoardSetup_header"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/BoardSetup_header" />
 
         <Button
             android:id="@+id/BoardSetup_BackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/black_3"
             android:text="@string/BoardSetup_Cancel_text"
-
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/BoardSetupComplete_button"
-            app:layout_constraintTop_toBottomOf="@id/BoardName_input"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/BoardName_input" />
 
         <Button
             android:id="@+id/BoardSetupComplete_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:backgroundTint="@color/blue_1"
 
             android:text="@string/boardSetupButton_text"
 
-            app:layout_constraintStart_toEndOf="@id/BoardSetup_BackButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/BoardName_input"
-            />
+            app:layout_constraintStart_toEndOf="@id/BoardSetup_BackButton"
+            app:layout_constraintTop_toBottomOf="@id/BoardName_input" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
