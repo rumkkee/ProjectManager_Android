@@ -1,5 +1,8 @@
 package com.example.projectmanager_android;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -33,6 +36,8 @@ public class CardExpandedFragment extends Fragment {
     private ImageButton mOptionsButton;
 
     private Card mCard;
+
+
 
     public CardExpandedFragment() {
         // Required empty public constructor
@@ -88,6 +93,15 @@ public class CardExpandedFragment extends Fragment {
             }
         });
 
+        mOptionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: For now, open a dialogue box asking if the user wants to delete the card
+                createDeleteCardDialogue();
+                // TODO: Open a menu which contains a "Delete card" item
+            }
+        });
+
         mCardDescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,5 +134,27 @@ public class CardExpandedFragment extends Fragment {
         AppDataBase.getInstance(getContext()).CardDAO().update(mCard);
         // Updating the currently displayed cardDesc
         mCardDescription.setText(newCardDesc);
+    }
+
+    private void createDeleteCardDialogue(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Remove Card");
+        builder.setMessage("Do you want to delete this card?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("No", (DialogInterface.OnClickListener)(dialog, which) ->{
+            dialog.cancel();
+        });
+
+        builder.setPositiveButton("Delete", (DialogInterface.OnClickListener)(dialog, which) ->{
+            deleteCard();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void deleteCard(){
+        AppDataBase.getInstance(getContext()).CardDAO().delete(mCard);
+        removeFragment();
     }
 }
