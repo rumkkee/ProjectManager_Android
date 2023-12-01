@@ -21,6 +21,11 @@ public abstract class SharedPreferencesHelper {
         return mCurrentUserPrefs != null;
     }
 
+    public static void setCurrentUserId(int userId){
+        SharedPreferences.Editor editor = mCurrentUserPrefs.edit();
+        editor.putInt(CURRENT_USER_ID_KEY, userId);
+        editor.apply();
+    }
 
     public static int getCurrentUserId(){
         int currentUserId = mCurrentUserPrefs.getInt(CURRENT_USER_ID_KEY, INVALID_ID);
