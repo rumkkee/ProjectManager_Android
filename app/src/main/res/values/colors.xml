@@ -7,4 +7,8 @@
     <color name="black_1">#1e1e1e</color>
 
     <color name="white_2">#eeeeee</color>
+    <color name="white_3">#cecece</color>
+
+    <color name="red_alert_bright">#880000</color>
+    <color name="red_alert_night">#FF7777</color>
 </resources>
