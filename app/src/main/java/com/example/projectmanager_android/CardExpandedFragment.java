@@ -39,12 +39,7 @@ public class CardExpandedFragment extends Fragment {
     private TextView mCardTitle;
     private TextView mCardDescription;
 
-    private ImageButton mExitFragmentButton;
-    private ImageButton mOptionsButton;
-
     private Card mCard;
-
-
 
     public CardExpandedFragment() {
         // Required empty public constructor
@@ -81,10 +76,10 @@ public class CardExpandedFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_card_expanded, container, false);
 
+        // Toolbar setup
         Toolbar toolbar = view.findViewById(R.id.cardDescFragment_toolbar);
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
 
@@ -108,26 +103,8 @@ public class CardExpandedFragment extends Fragment {
         mCardTitle = view.findViewById(R.id.cardFragment_title);
         mCardDescription = view.findViewById(R.id.cardFragment_descriptionTextView);
 
-        mExitFragmentButton = view.findViewById(R.id.cardFragment_exitButton);
-        mOptionsButton = view.findViewById(R.id.cardFragment_toolbarButton);
-
         mCardTitle.setText(mCardTitleParam);
         mCardDescription.setText(mCardDescParam);
-
-        mExitFragmentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeFragment();
-            }
-        });
-
-        mOptionsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createDeleteCardDialogue();
-                // TODO: Open a menu which contains a "Delete card" item
-            }
-        });
 
         mCardDescription.setOnClickListener(new View.OnClickListener() {
             @Override
