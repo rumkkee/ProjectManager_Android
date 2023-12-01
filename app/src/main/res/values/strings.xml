@@ -57,4 +57,5 @@
     <!--Alerts: Log In-->
     <string name="username_doesNotExist_alertText">*Username does not exist</string>
     <string name="password_incorrect_alertText">*Incorrect password</string>
+    <string name="add_card">Add Card</string>
 </resources>
