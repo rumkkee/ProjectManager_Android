@@ -58,6 +58,10 @@
     <string name="username_doesNotExist_alertText">*Username does not exist</string>
     <string name="password_incorrect_alertText">*Incorrect password</string>
     <string name="add_card">Add Card</string>
+
     <string name="add">Add</string>
     <string name="hint_title">title</string>
+    <string name="delete_board">Delete board</string>
+    <string name="delete_card">Delete card</string>
+
 </resources>
