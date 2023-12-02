@@ -1,6 +1,7 @@
 package com.example.projectmanager_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +23,6 @@ import com.example.projectmanager_android.databinding.ActivityBoardBinding;
 public class BoardActivity extends AppCompatActivity implements CardDisplayer {
 
     ActivityBoardBinding mActivityBoardBinding;
-    ImageButton mExitButton;
     TextView mBoardTitleTextView;
 
     TextView mAddCardTextView;
@@ -40,7 +40,18 @@ public class BoardActivity extends AppCompatActivity implements CardDisplayer {
         mActivityBoardBinding = ActivityBoardBinding.inflate(getLayoutInflater());
         setContentView(mActivityBoardBinding.getRoot());
 
-        mExitButton = mActivityBoardBinding.boardActivityExitButton;
+        // Toolbar setup
+        Toolbar toolbar = findViewById(R.id.boardActivity_toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferencesHelper.setCurrentBoardId(-1);
+
+                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
         mBoardTitleTextView = mActivityBoardBinding.boardActivityBoardHeader;
         mAddCardTextView = mActivityBoardBinding.boardActivityAddCardClickableText;
 
@@ -67,17 +78,6 @@ public class BoardActivity extends AppCompatActivity implements CardDisplayer {
         mCardViewModel = new ViewModelProvider(this).get(CardViewModel.class);
         mCardViewModel.getCardsByBoardId(SharedPreferencesHelper.getCurrentBoardId()).observe(this, cards -> {
             cardAdapter.submitList(cards);
-        });
-
-        mExitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Signals that the user is no longer in a BoardActivity.
-                SharedPreferencesHelper.setCurrentBoardId(-1);
-
-                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
-                startActivity(intent);
-            }
         });
 
         mAddCardTextView.setOnClickListener(new View.OnClickListener() {

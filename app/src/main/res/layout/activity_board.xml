@@ -23,7 +23,6 @@
             android:id="@+id/boardActivity_boardHeader"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="16dp"
             android:gravity="center_vertical"
             android:text="@string/boardActivity_boardNamePlaceholderText"
             android:textSize="20sp"
