@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.projectmanager_android.DB.AppDataBase;
 import com.example.projectmanager_android.DB.Board;
+import com.example.projectmanager_android.DB.BoardDAO;
 import com.example.projectmanager_android.DB.Card;
 import com.example.projectmanager_android.DB.CardAdapter;
 import com.example.projectmanager_android.DB.CardListViewModel;
@@ -34,6 +36,8 @@ public class BoardActivity extends AppCompatActivity implements CardDisplayer {
     CardAdderFragment mCardAdderFragment;
     CardExpandedFragment mCardExpandedFragment;
 
+    Board mBoard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,20 +49,28 @@ public class BoardActivity extends AppCompatActivity implements CardDisplayer {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferencesHelper.setCurrentBoardId(-1);
+                SharedPreferencesHelper.setCurrentBoardId(SharedPreferencesHelper.INVALID_ID);
+                startLandingPage();
+            }
+        });
 
-                Intent intent = LandingPageActivity.getIntent(getApplicationContext());
-                startActivity(intent);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId() == R.id.deleteBoard_item){
+                    deleteBoard();
+                }
+                return false;
             }
         });
 
         mBoardTitleTextView = mActivityBoardBinding.boardActivityBoardHeader;
         mAddCardTextView = mActivityBoardBinding.boardActivityAddCardClickableText;
 
-        Board currentBoard = AppDataBase.getInstance(this).BoardDAO().getBoardByBoardId(SharedPreferencesHelper.getCurrentBoardId());
-        if(currentBoard != null){
-            System.out.println(currentBoard.getTitle());
-            mBoardTitleTextView.setText(currentBoard.getTitle());
+        mBoard = AppDataBase.getInstance(this).BoardDAO().getBoardByBoardId(SharedPreferencesHelper.getCurrentBoardId());
+        if(mBoard != null){
+            System.out.println(mBoard.getTitle());
+            mBoardTitleTextView.setText(mBoard.getTitle());
         }
 
         // CardList observer setup
@@ -95,6 +107,19 @@ public class BoardActivity extends AppCompatActivity implements CardDisplayer {
     public static Intent getIntent(Context context){
         Intent intent = new Intent(context, BoardActivity.class);
         return intent;
+    }
+
+    private void startLandingPage(){
+        Intent intent = LandingPageActivity.getIntent(getApplicationContext());
+        startActivity(intent);
+    }
+
+    private void deleteBoard(){
+        BoardDAO boardDAO = AppDataBase.getInstance(getApplicationContext()).BoardDAO();
+        boardDAO.delete(mBoard);
+        // Alerting the shared prefs that the current board value is null.
+        SharedPreferencesHelper.setCurrentBoardId(SharedPreferencesHelper.INVALID_ID);
+        startLandingPage();
     }
 
     private void showCardListAdderFragment(){
